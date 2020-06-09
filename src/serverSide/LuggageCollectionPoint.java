@@ -1,7 +1,8 @@
-package sharedRegions;
+package serverSide;
 
-import commonInfrastructures.Luggages;
-import entities.Passenger;
+import comInf.Luggages;
+import clientSide.Passenger;
+import comInf.Message;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -48,9 +49,9 @@ public class LuggageCollectionPoint{
     }
 
     /**
-     * Method that gets called by a entities.Passenger to go collect a bag, that only
+     * Method that gets called by a clientSide.Passenger to go collect a bag, that only
      * happens if there is any bag on the conveyor that matches its ID
-     * @param p Its the passenger we use to compare to the commonInfrastructures.Luggages
+     * @param p Its the passenger we use to compare to the comInf.Luggages
      * @return the number of bags that a passenger was able to collect
      */
     public int goCollectABag(Passenger p) {
@@ -121,5 +122,8 @@ public class LuggageCollectionPoint{
     public int getSize()
     {
         return this.luggagesQueue.size();
+    }
+
+    public Message processAndReply(Message inMessage) {
     }
 }

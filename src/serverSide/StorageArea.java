@@ -1,6 +1,7 @@
-package sharedRegions;
+package serverSide;
 
-import commonInfrastructures.Luggages;
+import comInf.Luggages;
+import comInf.Message;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -15,7 +16,7 @@ public class StorageArea {
     }
 
     /**
-     * Allows to store luggages on the sharedRegions.StorageArea
+     * Allows to store luggages on the serverSide.StorageArea
      * @param lug
      */
     public void depositLuggage(Luggages lug){
@@ -27,4 +28,6 @@ public class StorageArea {
     }
 
 
+    public Message processAndReply(Message inMessage) {
+    }
 }

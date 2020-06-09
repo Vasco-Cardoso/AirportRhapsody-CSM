@@ -1,4 +1,4 @@
-package sharedRegions;
+package serverSide;
 
 import java.io.File;
 import java.io.FileWriter;

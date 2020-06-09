@@ -1,4 +1,6 @@
-package sharedRegions;
+package serverSide;
+
+import comInf.Message;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -36,5 +38,8 @@ public class ReclaimOffice {
             lock.unlock();
         }
 
+    }
+
+    public Message processAndReply(Message inMessage) {
     }
 }

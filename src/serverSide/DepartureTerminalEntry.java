@@ -1,10 +1,11 @@
-package sharedRegions;
+package serverSide;
 
-import java.util.Queue;
+import comInf.Message;
+
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ArrivalTerminalExit  {
+public class DepartureTerminalEntry{
 
     // Locks and conditions
     ReentrantLock lock = new ReentrantLock();
@@ -13,26 +14,19 @@ public class ArrivalTerminalExit  {
     // Variables
     private int numPassengers;
 
-    // Methods
-
-    public ArrivalTerminalExit()
-    {
+    //Constructor
+    public DepartureTerminalEntry() {
         this.numPassengers = 0;
     }
 
-    /**
-     * A new passenger arrives the terminal and the variable numPassengers gets increased.
-     */
-    public void arrivedTerminal()
-    {
+    public void arrivedTerminal(){
         lock.lock();
-        try
-        {
+        try {
             this.numPassengers++;
         }
         catch (Exception e)
         {
-            System.out.println(e);
+
         }
         finally
         {
@@ -41,11 +35,10 @@ public class ArrivalTerminalExit  {
     }
 
     /**
-     * Method that blocks the passenger while he waits for the last passenger to arrive to
-     * this terminal, so everyone can leave together.
+     * Method that awaits the last passenger to arrive the
+     * serverSide.DepartureTerminalEntry (Uses lock condition).
      */
-    public void waitLastPassenger()
-    {
+    public void waitLastPassenger(){
         lock.lock();
         try
         {
@@ -53,7 +46,7 @@ public class ArrivalTerminalExit  {
         }
         catch (Exception e)
         {
-            System.out.println(e);
+
         }
         finally
         {
@@ -62,24 +55,23 @@ public class ArrivalTerminalExit  {
     }
 
     /**
-     * Method that gets called by the last passenger to arrive this terminal and sets every other one
-     * free to precede with their life (in this case end his life cycle).
+     * Method called by the last passenger to arrive the terminal
+     * and that signals every other passenger to proceed.
      */
-    public void lastPassenger()
-    {
-       lock.lock();
-       try
-       {
-           lastp.signalAll();
-       }
-       catch (Exception e)
-       {
-           System.out.println(e);
-       }
-       finally
-       {
-           lock.unlock();
-       }
+    public void lastPassenger() {
+        lock.lock();
+        try
+        {
+            lastp.signalAll();
+        }
+        catch (Exception e)
+        {
+
+        }
+        finally
+        {
+            lock.unlock();
+        }
     }
 
     public int getNumPassengers() {
@@ -98,10 +90,13 @@ public class ArrivalTerminalExit  {
         }
         catch (Exception e)
         {
-            System.out.println(e);
+
         }
         finally {
             lock.unlock();
         }
+    }
+
+    public Message processAndReply(Message inMessage) {
     }
 }

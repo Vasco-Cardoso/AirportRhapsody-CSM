@@ -1,15 +1,15 @@
-package entities;
+package clientSide;
 
-import commonInfrastructures.Luggages;
+import comInf.Luggages;
 import mainProgram.Airport;
-import sharedRegions.*;
+import serverSide.*;
 
 import java.util.Objects;
 import java.util.Random;
 
 public class Passenger extends Thread {
 
-    // Possible different states of the entities.Passenger
+    // Possible different states of the clientSide.Passenger
     enum State 
     {
         AT_THE_DISEMBARKING_ZONE,
@@ -49,7 +49,7 @@ public class Passenger extends Thread {
                     Airport.logger.setPassState(this.id,"ATDZ");
                     Airport.logger.write(false);
 
-                    // Arrives the sharedRegions.ArrivalLounge
+                    // Arrives the serverSide.ArrivalLounge
                     this.arrivalLounge.disembarkPassenger(this);
 
                     // Checks what he has to do
@@ -275,7 +275,7 @@ public class Passenger extends Thread {
 
     @Override
     public String toString() {
-        return "entities.Passenger{" +
+        return "clientSide.Passenger{" +
                 "transit=" + transit +
                 ", STATE=" + STATE +
                 ", num_bags=" + num_bags +

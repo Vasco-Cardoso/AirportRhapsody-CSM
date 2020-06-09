@@ -1,6 +1,6 @@
-package commonInfrastructures;
+package comInf;
 
-import entities.Passenger;
+import clientSide.Passenger;
 
 import java.util.Objects;
 

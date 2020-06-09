@@ -1,6 +1,7 @@
-package sharedRegions;
+package serverSide;
 
-import entities.Passenger;
+import clientSide.Passenger;
+import comInf.Message;
 import mainProgram.Airport;
 
 import java.util.LinkedList;
@@ -33,7 +34,7 @@ public class ArrivalTransferTerminal {
     /**
      * A new passenger arrives the terminal and adds himself on the queue
      * while increasing the variable numPassengers.
-     * @param p -> entities.Passenger arriving
+     * @param p -> clientSide.Passenger arriving
      */
     public void arrivedTerminal(Passenger p){
         lock.lock();
@@ -159,4 +160,6 @@ public class ArrivalTransferTerminal {
         return this.numPassengers;
     }
 
+    public Message processAndReply(Message inMessage) {
+    }
 }

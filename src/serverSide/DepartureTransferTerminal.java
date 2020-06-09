@@ -1,6 +1,7 @@
-package sharedRegions;
+package serverSide;
 
-import entities.Passenger;
+import clientSide.Passenger;
+import comInf.Message;
 import mainProgram.Airport;
 
 import java.util.Queue;
@@ -125,4 +126,6 @@ public class DepartureTransferTerminal{
         this.canleave = false;
     }
 
+    public Message processAndReply(Message inMessage) {
+    }
 }

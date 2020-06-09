@@ -1,7 +1,8 @@
-package sharedRegions;
+package serverSide;
 
-import commonInfrastructures.Luggages;
-import entities.Passenger;
+import comInf.Luggages;
+import clientSide.Passenger;
+import comInf.Message;
 import mainProgram.Airport;
 
 import java.util.LinkedList;
@@ -78,7 +79,7 @@ public class ArrivalLounge{
     /**
      * Disembarks passenger from the plane to the Arrival lounge. The last passenger signals
      * The last passenger signals the porter to wake up and proceed with his life.
-     * @param p entities.Passenger that will get disembarked
+     * @param p clientSide.Passenger that will get disembarked
      * */
     public void disembarkPassenger(Passenger p) {
         lock.lock();
@@ -152,5 +153,8 @@ public class ArrivalLounge{
         finally {
             lock.unlock();
         }
+    }
+
+    public Message processAndReply(Message inMessage) {
     }
 }

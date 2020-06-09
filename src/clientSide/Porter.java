@@ -1,16 +1,16 @@
-package entities;
+package clientSide;
 
-import commonInfrastructures.Luggages;
+import comInf.Luggages;
 import mainProgram.Airport;
-import sharedRegions.ArrivalLounge;
-import sharedRegions.LuggageCollectionPoint;
-import sharedRegions.StorageArea;
+import serverSide.ArrivalLounge;
+import serverSide.LuggageCollectionPoint;
+import serverSide.StorageArea;
 
 import java.util.Objects;
 
 
 public class Porter extends Thread {
-    // Possible different states of the entities.Porter
+    // Possible different states of the clientSide.Porter
     enum State {
         WAITING_FOR_A_PLANE_TO_LAND,
         AT_THE_PLANES_HOLD,
