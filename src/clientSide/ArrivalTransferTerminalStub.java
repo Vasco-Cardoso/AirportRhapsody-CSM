@@ -2,6 +2,8 @@ package clientSide;
 
 import comInf.Message;
 
+import java.util.Queue;
+
 public class ArrivalTransferTerminalStub {
 
     private String serverHostName = null;
@@ -82,4 +84,9 @@ public class ArrivalTransferTerminalStub {
     }
 
 
+    public Queue<Passenger> getSpots() {
+    }
+
+    public void clearSpots() {
+    }
 }

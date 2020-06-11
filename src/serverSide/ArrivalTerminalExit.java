@@ -1,8 +1,8 @@
 package serverSide;
 
+import comInf.Luggages;
 import comInf.Message;
 
-import java.util.Queue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -108,5 +108,28 @@ public class ArrivalTerminalExit  {
     }
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;                           // mensagem de resposta
+        Luggages l = null;
+
+        switch (inMessage.getType ()){
+
+            case Message.AT:
+                arrivedTerminal();
+                outMessage = new Message (Message.ACK);       // gerar resposta
+                break;
+
+            case Message.WLP:
+                waitLastPassenger();
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.LP:
+                lastPassenger();
+                outMessage = new Message (Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

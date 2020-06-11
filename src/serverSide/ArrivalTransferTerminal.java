@@ -161,5 +161,27 @@ public class ArrivalTransferTerminal {
     }
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;                           // mensagem de resposta
+
+        switch (inMessage.getType ()){
+
+            case Message.AT:
+                arrivedTerminal(inMessage.getPass());
+                outMessage = new Message (Message.ACK);       // gerar resposta
+                break;
+
+            case Message.ETB:
+                enterTheBus();
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.ABB:
+                announcingBusBoarding();
+                outMessage = new Message (Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

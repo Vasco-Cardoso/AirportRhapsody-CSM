@@ -36,4 +36,7 @@ public class StorageAreaStub {
         }
         con.close ();
     }
+
+    public int getSize() {
+    }
 }

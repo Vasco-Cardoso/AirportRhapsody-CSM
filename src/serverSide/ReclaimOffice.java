@@ -41,5 +41,17 @@ public class ReclaimOffice {
     }
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;
+
+        switch (inMessage.getType()) {
+
+            case Message.RMB:
+                reportMissingBags(inMessage.getNBags());
+                outMessage = new Message(Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

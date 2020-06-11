@@ -3,6 +3,7 @@ package comInf;
 import clientSide.Passenger;
 
 import java.io.*;
+import java.util.Queue;
 
 public class Message implements Serializable
 {
@@ -90,6 +91,8 @@ public class Message implements Serializable
 
    private int nbags = -1;
 
+   private Queue<Passenger> seats = null;
+
 
    public Message (int type)
    {
@@ -121,6 +124,12 @@ public class Message implements Serializable
         this.lug= lug;
     }
 
+   public Message (int type, Queue<Passenger> seats)
+   {
+      msgType = type;
+      this.seats= seats;
+   }
+
    public int getType() {
       return msgType;
    }
@@ -131,6 +140,15 @@ public class Message implements Serializable
 
    public int getNBags() {
       return nbags;
+   }
+
+   public Passenger getPass() {
+      return passId;
+   }
+
+   public Queue<Passenger> getSeats(){
+
+      return seats;
    }
 
    @Override

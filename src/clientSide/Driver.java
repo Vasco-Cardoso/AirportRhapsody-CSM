@@ -1,8 +1,6 @@
 package clientSide;
 
 import mainProgram.Airport;
-import serverSide.ArrivalTransferTerminal;
-import serverSide.DepartureTransferTerminal;
 
 import java.util.LinkedList;
 import java.util.Objects;
@@ -29,8 +27,8 @@ public class Driver extends Thread{
     private boolean hasDaysWorkEnded = true;
 
     // Regions
-    private ArrivalTransferTerminal arrivalTransferTerminal;
-    private DepartureTransferTerminal departureTransferTerminal;
+    private ArrivalTransferTerminalStub arrivalTransferTerminal;
+    private DepartureTransferTerminalStub departureTransferTerminal;
 
     @Override
     public void run()
@@ -134,7 +132,7 @@ public class Driver extends Thread{
     // ----------------------------------------------------------------------------------------------- //
 
     // Constructor
-    public Driver(int n_seats, ArrivalTransferTerminal arrivalTransferTerminal, DepartureTransferTerminal departureTransferTerminal) {
+    public Driver(int n_seats, ArrivalTransferTerminalStub arrivalTransferTerminal, DepartureTransferTerminalStub departureTransferTerminal) {
         this.seats = new LinkedList<>();
         this.nseats = n_seats;
         this.arrivalTransferTerminal = arrivalTransferTerminal;

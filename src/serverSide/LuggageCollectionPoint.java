@@ -125,5 +125,27 @@ public class LuggageCollectionPoint{
     }
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;
+
+        switch (inMessage.getType()) {
+
+            case Message.DL:
+                depositLuggage(inMessage.getLuggage());
+                outMessage = new Message(Message.ACK);
+                break;
+
+            case Message.GCAB:
+                int nbags = goCollectABag(inMessage.getPass());
+                outMessage = new Message(Message.ACK, nbags);
+                break;
+
+            case Message.NMBTC:
+                noMoreBagsToCollect();
+                outMessage = new Message(Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

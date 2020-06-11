@@ -2,9 +2,6 @@ package clientSide;
 
 import comInf.Luggages;
 import mainProgram.Airport;
-import serverSide.ArrivalLounge;
-import serverSide.LuggageCollectionPoint;
-import serverSide.StorageArea;
 
 import java.util.Objects;
 
@@ -23,9 +20,9 @@ public class Porter extends Thread {
     private Luggages l = null;
 
     // Regions
-    private ArrivalLounge arrivalLounge;
-    private LuggageCollectionPoint luggageCollectionPoint;
-    private StorageArea storageArea;
+    private ArrivalLoungeStub arrivalLounge;
+    private LuggageCollectionPointStub luggageCollectionPoint;
+    private StorageAreaStub storageArea;
 
     @Override
     public void run()
@@ -104,7 +101,7 @@ public class Porter extends Thread {
     // ------------------------------ Constructors, setters and getters ------------------------------ //
     // ----------------------------------------------------------------------------------------------- //
 
-    public Porter(ArrivalLounge arrivalLounge, LuggageCollectionPoint luggageCollectionPoint, StorageArea storageArea)
+    public Porter(ArrivalLoungeStub arrivalLounge, LuggageCollectionPointStub luggageCollectionPoint, StorageAreaStub storageArea)
     {
         this.arrivalLounge = arrivalLounge;
         this.luggageCollectionPoint = luggageCollectionPoint;

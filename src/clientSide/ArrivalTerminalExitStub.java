@@ -80,4 +80,9 @@ public class ArrivalTerminalExitStub {
         con.close ();
     }
 
+    public int getNumPassengers() {
+    }
+
+    public void setEmpty() {
+    }
 }

@@ -35,4 +35,7 @@ public class ReclaimOfficeStub {
         }
         con.close ();
     }
+
+    public int getnLuggagesLost() {
+    }
 }

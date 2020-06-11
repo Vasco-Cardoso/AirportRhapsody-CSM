@@ -29,5 +29,17 @@ public class StorageArea {
 
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;
+
+        switch (inMessage.getType()) {
+
+            case Message.DL:
+                depositLuggage(inMessage.getLuggage());
+                outMessage = new Message(Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

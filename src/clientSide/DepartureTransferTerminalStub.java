@@ -2,6 +2,8 @@ package clientSide;
 
 import comInf.Message;
 
+import java.util.Queue;
+
 public class DepartureTransferTerminalStub {
 
     private String serverHostName = null;
@@ -58,7 +60,7 @@ public class DepartureTransferTerminalStub {
         con.close ();
     }
 
-    public void parkTheBusAndLetPassOff(){
+    public void parkTheBusAndLetPassOff(Queue<Passenger> seats){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -70,7 +72,7 @@ public class DepartureTransferTerminalStub {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.PTBALPO);
+        outMessage = new Message (Message.PTBALPO, seats);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -100,5 +102,8 @@ public class DepartureTransferTerminalStub {
             System.exit (1);
         }
         con.close ();
+    }
+
+    public void setCanleave() {
     }
 }

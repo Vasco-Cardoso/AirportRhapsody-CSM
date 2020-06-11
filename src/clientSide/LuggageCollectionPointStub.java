@@ -82,4 +82,7 @@ public class LuggageCollectionPointStub {
         }
         con.close ();
     }
+
+    public int getSize() {
+    }
 }

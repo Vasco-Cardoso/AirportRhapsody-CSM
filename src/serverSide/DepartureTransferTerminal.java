@@ -127,5 +127,32 @@ public class DepartureTransferTerminal{
     }
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;                           // mensagem de resposta
+
+        switch (inMessage.getType ()){
+
+            case Message.LDTT:
+                leaveDepartureTransferTerminal();
+                outMessage = new Message (Message.ACK);       // gerar resposta
+                break;
+
+            case Message.LTB:
+                leaveTheBus();
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.PTBALPO:
+                parkTheBusAndLetPassOff(inMessage.getSeats());
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.GTAT:
+                goToArrivalTerminal();
+                outMessage = new Message (Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

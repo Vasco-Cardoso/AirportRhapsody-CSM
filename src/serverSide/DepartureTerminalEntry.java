@@ -98,5 +98,27 @@ public class DepartureTerminalEntry{
     }
 
     public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;                           // mensagem de resposta
+
+        switch (inMessage.getType ()){
+
+            case Message.AT:
+                arrivedTerminal();
+                outMessage = new Message (Message.ACK);       // gerar resposta
+                break;
+
+            case Message.WLP:
+                waitLastPassenger();
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.LP:
+                lastPassenger();
+                outMessage = new Message (Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

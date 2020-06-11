@@ -1,8 +1,8 @@
 package serverSide;
 
 import comInf.Luggages;
-import clientSide.Passenger;
 import comInf.Message;
+import comInf.MessageException;
 import mainProgram.Airport;
 
 import java.util.LinkedList;
@@ -79,9 +79,8 @@ public class ArrivalLounge{
     /**
      * Disembarks passenger from the plane to the Arrival lounge. The last passenger signals
      * The last passenger signals the porter to wake up and proceed with his life.
-     * @param p clientSide.Passenger that will get disembarked
      * */
-    public void disembarkPassenger(Passenger p) {
+    public void disembarkPassenger() {
         lock.lock();
         try {
             this.numPassengers++;
@@ -155,6 +154,40 @@ public class ArrivalLounge{
         }
     }
 
-    public Message processAndReply(Message inMessage) {
+    public Message processAndReply(Message inMessage) throws MessageException {
+
+        Message outMessage = null;                           // mensagem de resposta
+        Luggages l = null;
+
+        switch (inMessage.getType ()){
+
+            case Message.DL:
+                l = inMessage.getLuggage();
+                depositLuggage(l);
+                outMessage = new Message (Message.ACK);       // gerar resposta
+            break;
+
+            case Message.TTCB:
+                l = tryToCollectABag();
+                outMessage = new Message (Message.ACK, l);
+                break;
+
+            case Message.DP:
+                disembarkPassenger();
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.TR:
+                takeARest();
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.SE:
+                signalEnd();
+                outMessage = new Message (Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }

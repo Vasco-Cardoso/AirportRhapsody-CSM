@@ -2,7 +2,6 @@ package clientSide;
 
 import comInf.Luggages;
 import mainProgram.Airport;
-import serverSide.*;
 
 import java.util.Objects;
 import java.util.Random;
@@ -30,13 +29,13 @@ public class Passenger extends Thread {
     private int id;
 
     // Regions
-    private ArrivalLounge arrivalLounge;
-    private LuggageCollectionPoint luggageCollectionPoint;
-    private ReclaimOffice reclaimOffice;
-    private ArrivalTransferTerminal arrivalTransferTerminal;
-    private DepartureTerminalEntry departureTerminalEntry;
-    private DepartureTransferTerminal departureTransferTerminal;
-    private ArrivalTerminalExit arrivalTerminalExit;
+    private ArrivalLoungeStub arrivalLounge;
+    private LuggageCollectionPointStub luggageCollectionPoint;
+    private ReclaimOfficeStub reclaimOffice;
+    private ArrivalTransferTerminalStub arrivalTransferTerminal;
+    private DepartureTerminalEntryStub departureTerminalEntry;
+    private DepartureTransferTerminalStub departureTransferTerminal;
+    private ArrivalTerminalExitStub arrivalTerminalExit;
 
     private boolean die = false;
 
@@ -50,7 +49,7 @@ public class Passenger extends Thread {
                     Airport.logger.write(false);
 
                     // Arrives the serverSide.ArrivalLounge
-                    this.arrivalLounge.disembarkPassenger(this);
+                    this.arrivalLounge.disembarkPassenger();
 
                     // Checks what he has to do
                     if (!whatShouldIDo()) {
@@ -198,7 +197,7 @@ public class Passenger extends Thread {
     // ------------------------------ Constructors, setters and getters ------------------------------ //
     // ----------------------------------------------------------------------------------------------- //
 
-    public Passenger(int id, ArrivalLounge arrivalLounge, LuggageCollectionPoint luggageCollectionPoint, ReclaimOffice reclaimOffice, ArrivalTransferTerminal arrivalTransferTerminal, DepartureTerminalEntry departureTerminalEntry, DepartureTransferTerminal departureTransferTerminal, ArrivalTerminalExit arrivalTerminalExit) {
+    public Passenger(int id, ArrivalLoungeStub arrivalLounge, LuggageCollectionPointStub luggageCollectionPoint, ReclaimOfficeStub reclaimOffice, ArrivalTransferTerminalStub arrivalTransferTerminalStub, DepartureTerminalEntryStub departureTerminalEntry, DepartureTransferTerminalStub departureTransferTerminal, ArrivalTerminalExitStub arrivalTerminalExit) {
 
         this.id = id;
         this.arrivalLounge = arrivalLounge;

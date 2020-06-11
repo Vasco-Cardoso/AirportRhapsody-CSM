@@ -81,4 +81,9 @@ public class DepartureTerminalEntryStub {
     }
 
 
+    public int getNumPassengers() {
+    }
+
+    public void setEmpty() {
+    }
 }
