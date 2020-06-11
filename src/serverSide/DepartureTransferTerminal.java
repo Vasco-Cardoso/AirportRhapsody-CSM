@@ -151,6 +151,11 @@ public class DepartureTransferTerminal{
                 goToArrivalTerminal();
                 outMessage = new Message (Message.ACK);
                 break;
+
+            case Message.SCL:
+                setCanleave();
+                outMessage = new Message (Message.ACK);
+                break;
         }
 
         return outMessage;

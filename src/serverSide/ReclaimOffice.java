@@ -47,8 +47,12 @@ public class ReclaimOffice {
         switch (inMessage.getType()) {
 
             case Message.RMB:
-                reportMissingBags(inMessage.getNBags());
+                reportMissingBags(inMessage.getN());
                 outMessage = new Message(Message.ACK);
+                break;
+
+            case Message.GNLL:
+                outMessage = new Message(Message.ACK, getnLuggagesLost());
                 break;
         }
 

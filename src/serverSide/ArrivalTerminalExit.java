@@ -128,6 +128,15 @@ public class ArrivalTerminalExit  {
                 lastPassenger();
                 outMessage = new Message (Message.ACK);
                 break;
+
+            case Message.GNP:
+                outMessage = new Message (Message.ACK, getNumPassengers());
+                break;
+
+            case Message.SE:
+                setEmpty();
+                outMessage = new Message (Message.ACK);
+                break;
         }
 
         return outMessage;

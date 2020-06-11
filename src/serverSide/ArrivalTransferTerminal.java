@@ -180,6 +180,16 @@ public class ArrivalTransferTerminal {
                 announcingBusBoarding();
                 outMessage = new Message (Message.ACK);
                 break;
+
+            case Message.GS:
+
+                outMessage = new Message (Message.ACK,getSpots());
+                break;
+
+            case Message.CS:
+                clearSpots();
+                outMessage = new Message (Message.ACK);
+                break;
         }
 
         return outMessage;

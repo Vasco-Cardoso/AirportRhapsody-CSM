@@ -144,6 +144,10 @@ public class LuggageCollectionPoint{
                 noMoreBagsToCollect();
                 outMessage = new Message(Message.ACK);
                 break;
+
+            case Message.GS:
+                outMessage = new Message(Message.ACK, getSize());
+                break;
         }
 
         return outMessage;

@@ -82,8 +82,48 @@ public class DepartureTerminalEntryStub {
 
 
     public int getNumPassengers() {
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+
+        while (!con.open ())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread ().sleep ((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+        outMessage = new Message (Message.GNP);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
+
+        return inMessage.getN();
     }
 
     public void setEmpty() {
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+
+        while (!con.open ())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread ().sleep ((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+        outMessage = new Message (Message.SE);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
     }
 }

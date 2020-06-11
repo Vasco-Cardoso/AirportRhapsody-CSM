@@ -56,24 +56,33 @@ public class Message implements Serializable
 
    public static final int LTB = 20;                  // leaveTheBus
 
+   public static final int GNP = 21;
+
    // Driver
 
-   public static final int PTB   = 21;
+   public static final int PTB   = 22;
 
-    public static final int ABB   = 22;
+    public static final int ABB   = 23;
 
-    public static final int HDWE   = 23;
+    public static final int HDWE   = 24;
 
-    public static final int GTDT   = 24;
+    public static final int GTDT   = 25;
 
-   public static final int PTBALPO   = 25;
+   public static final int PTBALPO   = 26;
 
-   public static final int GTAT   = 26;
+   public static final int GTAT   = 27;
 
+   public static final int GS = 28;
+
+   public static final int CS = 29;
 
     // Gerais
 
-   public static final int ACK   = 27;
+   public static final int ACK   = 30;
+
+   public static final int SCL = 31;
+
+   public static final int GNLL = 32;
 
 
 
@@ -89,7 +98,7 @@ public class Message implements Serializable
 
    private Luggages lug = null;
 
-   private int nbags = -1;
+   private int n = -1;
 
    private Queue<Passenger> seats = null;
 
@@ -102,7 +111,7 @@ public class Message implements Serializable
    public Message (int type, int n)
    {
       msgType = type;
-      this.nbags = n;
+      this.n = n;
    }
 
    public Message (int type, Passenger passId)
@@ -138,8 +147,8 @@ public class Message implements Serializable
       return lug;
    }
 
-   public int getNBags() {
-      return nbags;
+   public int getN() {
+      return n;
    }
 
    public Passenger getPass() {
