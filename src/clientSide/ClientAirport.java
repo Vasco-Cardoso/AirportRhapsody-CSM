@@ -4,8 +4,8 @@ import serverSide.GeneralRepository;
 
 public class ClientAirport {
 
-    public static int nPassengers = 6 ;                               // number of passengers
-    public static int nPlaneLandings = 5;                             // number of plane landings
+    public static int nPassengers = 5 ;                               // number of passengers
+    public static int nPlaneLandings = 3;                             // number of plane landings
     public static int nSeatingPlaces = 3;                             // bus capacity
     public static int maxBags = 3;                                    // maximum luggage
     public static GeneralRepository logger = new GeneralRepository(nSeatingPlaces, nPassengers, 6,"Report.txt");

@@ -102,6 +102,8 @@ public class Message implements Serializable
 
    private Queue<Passenger> seats = null;
 
+   private String lugg = null;
+
 
    public Message (int type)
    {
@@ -119,6 +121,13 @@ public class Message implements Serializable
       msgType = type;
       this.passId = passId;
    }
+
+   public Message (int type, String lug)
+   {
+      msgType = type;
+      this.lugg = lug;
+   }
+
 
    public Message (int type, String name, int nIter)
    {

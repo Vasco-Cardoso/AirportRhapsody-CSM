@@ -32,6 +32,8 @@ public class Porter extends Thread {
             switch(this.STATE)
             {
                 case WAITING_FOR_A_PLANE_TO_LAND:
+                    System.out.println("wfptl");
+
                     // Logger
                     Airport.logger.setPorterState("WFPL");
                     Airport.logger.write(false);
@@ -43,6 +45,8 @@ public class Porter extends Thread {
 
                     break;
                 case AT_THE_PLANES_HOLD:
+                    System.out.println("At the planes hold zone");
+
                     // Logger
                     Airport.logger.setPorterState("ATPH");
                     Airport.logger.write(false);

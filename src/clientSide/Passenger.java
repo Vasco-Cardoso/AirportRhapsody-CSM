@@ -45,6 +45,8 @@ public class Passenger extends Thread implements Serializable {
         while (!die) {
             switch (this.STATE) {
                 case AT_THE_DISEMBARKING_ZONE:
+                    System.out.println("At the disembarking zone");
+
                     // Logger
                     Airport.logger.setPassState(this.id,"ATDZ");
                     Airport.logger.write(false);
@@ -70,6 +72,9 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case AT_THE_LUGGAGE_COLLECTION_POINT:
+                    System.out.println("At the colpoint zone");
+
+
                     // Logger
                     Airport.logger.setPassState(this.id,"ATCP");
                     Airport.logger.write(false);
@@ -91,6 +96,9 @@ public class Passenger extends Thread implements Serializable {
                     }
                     break;
                 case AT_THE_BAGGAGE_RECLAIM_OFFICE:
+                    System.out.println("At the reclaim zone");
+
+
                     // Logger
                     Airport.logger.setPassState(this.id,"ATRO");
                     Airport.logger.write(false);
