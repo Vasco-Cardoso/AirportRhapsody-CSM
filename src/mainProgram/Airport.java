@@ -32,13 +32,13 @@ public class Airport {
         StorageArea tempStorageArea = new StorageArea();
 
         //entities
-        porter = new Porter(arrivalLounge, collPoint, tempStorageArea);
-        busDriver = new Driver(nSeatingPlaces,arrTransQuay,depTransQuay);
+        //porter = new Porter(arrivalLounge, collPoint, tempStorageArea);
+        //busDriver = new Driver(nSeatingPlaces,arrTransQuay,depTransQuay);
 
 
         //Start Simulation
-        porter.start();
-        busDriver.start();
+        //porter.start();
+        //busDriver.start();
 
         for(int i=0; i<nPlaneLandings; i++){
             System.out.println("------------- VOO NUMERO"+(i+1)+" ---------------------\n");
@@ -46,7 +46,7 @@ public class Airport {
             logger.setnFlight(i+1);
             int b = 0;
             for (int j = 0; j < nPassengers; j++){
-                passenger[j] = new Passenger(j, arrivalLounge, collPoint, reclaimOffice, arrTransQuay, depTermEntrance, depTransQuay, arrTermExit);
+                //passenger[j] = new Passenger(j, arrivalLounge, collPoint, reclaimOffice, arrTransQuay, depTermEntrance, depTransQuay, arrTermExit);
                 b += passenger[j].getNum_bags();
             }
             logger.setnBags(b);
@@ -76,10 +76,10 @@ public class Airport {
         arrivalLounge.signalEnd();
 
         // Signal porter, it is over.
-        busDriver.setHasDaysWorkEnded();
+        //busDriver.setHasDaysWorkEnded();
 
         // Join the busDriver to end his life.
-        try
+        /*try
         {
             busDriver.join();
         }
@@ -91,12 +91,12 @@ public class Airport {
         // Join the porter to end his life.
         try
         {
-            porter.join();
+            //porter.join();
         }
         catch (InterruptedException e)
         {
             e.fillInStackTrace();
-        }
+        }*/
 
         // Logging the last things
         logger.setnLostBags(reclaimOffice.getnLuggagesLost());
