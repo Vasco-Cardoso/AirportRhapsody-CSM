@@ -103,6 +103,7 @@ public class Porter extends Thread {
 
     public Porter(ArrivalLoungeStub arrivalLounge, LuggageCollectionPointStub luggageCollectionPoint, StorageAreaStub storageArea)
     {
+        System.out.println("Setting up porter");
         this.arrivalLounge = arrivalLounge;
         this.luggageCollectionPoint = luggageCollectionPoint;
         this.storageArea = storageArea;

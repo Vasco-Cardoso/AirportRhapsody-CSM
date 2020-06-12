@@ -133,6 +133,7 @@ public class Driver extends Thread{
 
     // Constructor
     public Driver(int n_seats, ArrivalTransferTerminalStub arrivalTransferTerminal, DepartureTransferTerminalStub departureTransferTerminal) {
+        System.out.println("Setting up driver");
         this.seats = new LinkedList<>();
         this.nseats = n_seats;
         this.arrivalTransferTerminal = arrivalTransferTerminal;

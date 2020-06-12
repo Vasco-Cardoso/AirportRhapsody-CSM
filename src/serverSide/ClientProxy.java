@@ -131,7 +131,7 @@ public class ClientProxy extends Thread
    public void run ()
    {
       Message inMessage = null,                                      // mensagem de entrada
-              outMessage = null;                      // mensagem de saída
+              outMessage = null;                                     // mensagem de saída
 
       System.out.println("TYPE:" + type + ", message: " + inMessage);
       inMessage = (Message) sconi.readObject ();                     // ler pedido do cliente

@@ -31,14 +31,14 @@ public class ClientAirport {
         String serverHostName = "afonso-N550RN";                   // nome do sistema computacional onde está o servidor
         int serverPortNumb = 22001;                          // número do port de escuta do servidor
 
-        arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb);
-        luggageCollectionPointStub = new LuggageCollectionPointStub(serverHostName, serverPortNumb);
-        reclaimOfficeStub = new ReclaimOfficeStub(serverHostName, serverPortNumb);
-        arrivalTransferTerminalStub = new ArrivalTransferTerminalStub(serverHostName, serverPortNumb);
-        departureTransferTerminalStub = new DepartureTransferTerminalStub(serverHostName, serverPortNumb);
-        arrivalTerminalExitStub = new ArrivalTerminalExitStub(serverHostName, serverPortNumb);
-        departureTerminalEntryStub = new DepartureTerminalEntryStub(serverHostName, serverPortNumb);
-        storageAreaStub = new StorageAreaStub(serverHostName, serverPortNumb);
+        arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);
+        luggageCollectionPointStub = new LuggageCollectionPointStub(serverHostName, serverPortNumb + 2);
+        reclaimOfficeStub = new ReclaimOfficeStub(serverHostName, serverPortNumb + 3);
+        arrivalTransferTerminalStub = new ArrivalTransferTerminalStub(serverHostName, serverPortNumb + 4);
+        departureTransferTerminalStub = new DepartureTransferTerminalStub(serverHostName, serverPortNumb + 5);
+        arrivalTerminalExitStub = new ArrivalTerminalExitStub(serverHostName, serverPortNumb + 6);
+        departureTerminalEntryStub = new DepartureTerminalEntryStub(serverHostName, serverPortNumb + 7);
+        storageAreaStub = new StorageAreaStub(serverHostName, serverPortNumb + 8);
 
         porter = new Porter(arrivalLoungeStub, luggageCollectionPointStub, storageAreaStub);
         busDriver = new Driver(nSeatingPlaces, arrivalTransferTerminalStub, departureTransferTerminalStub);
