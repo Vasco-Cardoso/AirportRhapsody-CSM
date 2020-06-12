@@ -220,26 +220,20 @@ public class ServerCom
    *
    *    @return objecto lido
    */
-
    public Object readObject ()
    {
       Object fromClient = null;                            // objecto
 
       try
-      { fromClient = in.readObject ();
-      }
-      catch (InvalidClassException e)
       {
+        fromClient = in.readObject();
+      } catch (InvalidClassException e) {
         e.printStackTrace ();
         System.exit (1);
-      }
-      catch (IOException e)
-      {
+      } catch (IOException e) {
         e.printStackTrace ();
         System.exit (1);
-      }
-      catch (ClassNotFoundException e)
-      {
+      } catch (ClassNotFoundException e) {
         e.printStackTrace ();
         System.exit (1);
       }

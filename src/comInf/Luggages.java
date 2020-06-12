@@ -2,9 +2,11 @@ package comInf;
 
 import clientSide.Passenger;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Luggages {
+public class Luggages implements Serializable {
+    private static final long serialVersionUID = 1022L;
 
     // Variáveis
     private Passenger passenger;

@@ -45,6 +45,9 @@ public class ServerAirport {
         depTermEntrance = new DepartureTerminalEntry();
         tempStorageArea = new StorageArea();
 
+        System.out.println("O serviço foi estabelicido");
+        System.out.println("O servidor está em escuta");
+
         /* processamento de pedidos */
 
         waitConnection = true;

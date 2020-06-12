@@ -3,10 +3,11 @@ package clientSide;
 import comInf.Luggages;
 import mainProgram.Airport;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Passenger extends Thread {
+public class Passenger extends Thread implements Serializable {
 
     // Possible different states of the clientSide.Passenger
     enum State 
@@ -220,6 +221,8 @@ public class Passenger extends Thread {
      */
     private void setupPassanger()
     {
+        System.out.println("Setting up passenger");
+
         Random rd = new Random();
         Random r2 = new Random();
         this.transit = rd.nextBoolean();
@@ -264,7 +267,10 @@ public class Passenger extends Thread {
             return false;
         }
         Passenger passenger = (Passenger) o;
-        return transit == passenger.transit && Objects.equals(STATE, passenger.STATE) && num_bags == passenger.num_bags && num_bags_collected == passenger.num_bags_collected;
+        return transit == passenger.transit
+                && Objects.equals(STATE, passenger.STATE)
+                && num_bags == passenger.num_bags
+                && num_bags_collected == passenger.num_bags_collected;
     }
 
     @Override

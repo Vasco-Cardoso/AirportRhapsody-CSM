@@ -4,8 +4,8 @@ import java.io.*;
 import java.net.*;
 
 /**
- *   Este tipo de dados implementa o canal de comunicação, lado do cliente, para uma comunicação baseada em passagem de
- *   mensagens sobre sockets usando o protocolo TCP.
+ *   Este tipo de dados implementa o canal de comunicação, lado do cliente, para uma comunicação
+ *   baseada em passagem de mensagens sobre sockets usando o protocolo TCP.
  *   A transferência de dados é baseada em objectos, um objecto de cada vez.
  */
 
@@ -92,9 +92,9 @@ public class ClientCom
         if (e.getMessage ().equals ("Connection refused"))
            success = false;
            else {
-                  e.printStackTrace ();
-                  System.exit (1);
-                }
+                e.printStackTrace ();
+                System.exit (1);
+           }
       }
       catch (SocketTimeoutException e)
       {
@@ -109,7 +109,8 @@ public class ClientCom
       if (!success) return (success);
 
       try
-      { out = new ObjectOutputStream (commSocket.getOutputStream ());
+      {
+          out = new ObjectOutputStream (commSocket.getOutputStream ());
       }
       catch (IOException e)
       {
@@ -118,7 +119,8 @@ public class ClientCom
       }
 
       try
-      { in = new ObjectInputStream (commSocket.getInputStream ());
+      {
+          in = new ObjectInputStream (commSocket.getInputStream ());
       }
       catch (IOException e)
       {
@@ -176,7 +178,8 @@ public class ClientCom
       Object fromServer = null;                            // objecto
 
       try
-      { fromServer = in.readObject ();
+      {
+          fromServer = in.readObject ();
       }
       catch (InvalidClassException e)
       {

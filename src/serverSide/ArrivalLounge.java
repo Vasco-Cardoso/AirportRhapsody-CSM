@@ -22,6 +22,7 @@ public class ArrivalLounge{
 
     public ArrivalLounge()
     {
+        System.out.println("Fui iniciado");
         this.numPassengers = 0;
         this.luggagesQueue = new LinkedList<>();
     }
@@ -33,6 +34,7 @@ public class ArrivalLounge{
      * */
     public void depositLuggage(Luggages lug)
     {
+        System.out.println("Entrei no deposit lug");
         lock.lock();
         try
         {

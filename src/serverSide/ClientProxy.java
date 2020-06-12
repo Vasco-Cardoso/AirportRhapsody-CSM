@@ -56,7 +56,7 @@ public class ClientProxy extends Thread
 
       this.sconi = sconi;
       this.arrivalLounge = arrivalLounge;
-       this.type = 1;
+      this.type = 1;
    }
 
     public ClientProxy (ServerCom sconi, LuggageCollectionPoint luggageCollectionPoint)
@@ -133,11 +133,11 @@ public class ClientProxy extends Thread
       Message inMessage = null,                                      // mensagem de entrada
               outMessage = null;                      // mensagem de saída
 
+      System.out.println("TYPE:" + type + ", message: " + inMessage);
       inMessage = (Message) sconi.readObject ();                     // ler pedido do cliente
       try
       {
-          switch (type){
-
+          switch (this.type){
               case 1:
                   outMessage = arrivalLounge.processAndReply (inMessage);
                   break;
@@ -163,6 +163,7 @@ public class ClientProxy extends Thread
                   outMessage = tempStorageArea.processAndReply (inMessage);
                   break;
               default:
+                  System.out.println("ERROR");
                   break;
           }
       }
@@ -196,7 +197,8 @@ public class ClientProxy extends Thread
       }
 
       synchronized (cl)
-      { proxyId = nProxy;
+      {
+          proxyId = nProxy;
         nProxy += 1;
       }
 
