@@ -2,9 +2,10 @@ package clientSide;
 
 import comInf.Message;
 
+import java.io.Serializable;
 import java.util.Queue;
 
-public class ArrivalTransferTerminalStub {
+public class ArrivalTransferTerminalStub implements Serializable {
 
     private String serverHostName = null;
 
@@ -17,8 +18,7 @@ public class ArrivalTransferTerminalStub {
     }
 
     public void arrivedTerminal(Passenger p){
-
-
+        System.out.println("At ArrivalTransferTerminalStub. Pass: " + p.toString());
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
 
@@ -29,6 +29,7 @@ public class ArrivalTransferTerminalStub {
             }
             catch (InterruptedException e) {}
         }
+        System.out.println("after while");
         outMessage = new Message (Message.AT, p);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();

@@ -27,12 +27,12 @@ public class Porter extends Thread {
     @Override
     public void run()
     {
-        while(!Airport.airplanesDone)
+        while(!ClientAirport.airplanesDone)
         {
             switch(this.STATE)
             {
                 case WAITING_FOR_A_PLANE_TO_LAND:
-                    System.out.println("wfptl");
+                    System.out.println("PORTER: wfptl");
 
                     // Logger
                     Airport.logger.setPorterState("WFPL");
@@ -45,7 +45,7 @@ public class Porter extends Thread {
 
                     break;
                 case AT_THE_PLANES_HOLD:
-                    System.out.println("At the planes hold zone");
+                    System.out.println("PORTER: AT_THE_PLANES_HOLD");
 
                     // Logger
                     Airport.logger.setPorterState("ATPH");

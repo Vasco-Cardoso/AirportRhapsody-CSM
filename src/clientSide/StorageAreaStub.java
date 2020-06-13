@@ -3,7 +3,9 @@ package clientSide;
 import comInf.Luggages;
 import comInf.Message;
 
-public class StorageAreaStub {
+import java.io.Serializable;
+
+public class StorageAreaStub implements Serializable {
 
     private String serverHostName = null;
 

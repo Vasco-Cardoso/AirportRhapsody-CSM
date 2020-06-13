@@ -2,9 +2,10 @@ package clientSide;
 
 import comInf.Message;
 
+import java.io.Serializable;
 import java.util.Queue;
 
-public class DepartureTransferTerminalStub {
+public class DepartureTransferTerminalStub implements Serializable {
 
     private String serverHostName = null;
 

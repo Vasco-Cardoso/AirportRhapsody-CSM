@@ -32,6 +32,7 @@ public class ReclaimOffice {
     public void reportMissingBags(int n){
         lock.lock();
         try {
+            System.out.println("REPORT MISSING BAGS: " + n);
             this.nLuggagesLost += n;
         }catch (Exception e){}
         finally {

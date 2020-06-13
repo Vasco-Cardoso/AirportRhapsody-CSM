@@ -133,9 +133,10 @@ public class ClientProxy extends Thread
       Message inMessage = null,                                      // mensagem de entrada
               outMessage = null;                                     // mensagem de saída
 
-      System.out.println("TYPE:" + type + ", message: " + inMessage);
       inMessage = (Message) sconi.readObject ();                     // ler pedido do cliente
-      try
+       System.out.println("TYPE:" + type + ", message: " + inMessage);
+
+       try
       {
           switch (this.type){
               case 1:

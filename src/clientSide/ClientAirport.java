@@ -4,8 +4,8 @@ import serverSide.GeneralRepository;
 
 public class ClientAirport {
 
-    public static int nPassengers = 5 ;                               // number of passengers
-    public static int nPlaneLandings = 3;                             // number of plane landings
+    public static int nPassengers = 1 ;                               // number of passengers
+    public static int nPlaneLandings = 1;                             // number of plane landings
     public static int nSeatingPlaces = 3;                             // bus capacity
     public static int maxBags = 3;                                    // maximum luggage
     public static GeneralRepository logger = new GeneralRepository(nSeatingPlaces, nPassengers, 6,"Report.txt");
@@ -29,7 +29,7 @@ public class ClientAirport {
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging
         String serverHostName = "afonso-N550RN";                   // nome do sistema computacional onde está o servidor
-        int serverPortNumb = 22001;                          // número do port de escuta do servidor
+        int serverPortNumb = 22000;                          // número do port de escuta do servidor
 
         arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);
         luggageCollectionPointStub = new LuggageCollectionPointStub(serverHostName, serverPortNumb + 2);

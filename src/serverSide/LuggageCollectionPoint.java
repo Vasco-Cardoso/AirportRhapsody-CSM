@@ -30,6 +30,7 @@ public class LuggageCollectionPoint{
      * @param lug
      */
     public void depositLuggage(Luggages lug){
+        System.out.println("server_side: " + "depositing lug: " + lug.toString());
         lock.lock();
         try{
             morebags = true;
@@ -55,6 +56,8 @@ public class LuggageCollectionPoint{
      * @return the number of bags that a passenger was able to collect
      */
     public int goCollectABag(Passenger p) {
+        System.out.println("server_side: go collect a bag for pass :" + p.toString());
+
         int i = 0;
         lock.lock();
         try {

@@ -28,7 +28,6 @@ public class ArrivalTransferTerminal {
         this.numPassengers = 0;
         this.spots = new LinkedList<>();
         this.waitingQ = new LinkedList<>();
-
     }
 
     /**

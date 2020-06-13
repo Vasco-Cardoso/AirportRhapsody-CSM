@@ -74,7 +74,6 @@ public class Passenger extends Thread implements Serializable {
                 case AT_THE_LUGGAGE_COLLECTION_POINT:
                     System.out.println("At the colpoint zone");
 
-
                     // Logger
                     Airport.logger.setPassState(this.id,"ATCP");
                     Airport.logger.write(false);
@@ -98,7 +97,6 @@ public class Passenger extends Thread implements Serializable {
                 case AT_THE_BAGGAGE_RECLAIM_OFFICE:
                     System.out.println("At the reclaim zone");
 
-
                     // Logger
                     Airport.logger.setPassState(this.id,"ATRO");
                     Airport.logger.write(false);
@@ -111,12 +109,14 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case EXITING_THE_ARRIVAL_TERMINAL:
+                    System.out.println("At EXITING_THE_ARRIVAL_TERMINAL");
+
                     // Logger
                     Airport.logger.setPassState(this.id, "EAT");
                     Airport.logger.write(false);
 
                     // Checks if this passenger is the last one to arrive the terminal, else waits for the last one to signal
-                    if(Airport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
+                    if(ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
                     {
                         this.arrivalTerminalExit.lastPassenger();
                         this.departureTerminalEntry.lastPassenger();
@@ -129,6 +129,8 @@ public class Passenger extends Thread implements Serializable {
                     this.die = true;
                     break;
                 case AT_THE_ARRIVAL_TRANSFER_TERMINAL:
+                    System.out.println("At AT_THE_ARRIVAL_TRANSFER_TERMINAL");
+
                     // Logger
                     Airport.logger.setPassState(this.getPId(),"AATT");
                     Airport.logger.write(false);
@@ -138,6 +140,8 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case TERMINAL_TRANSFER:
+                    System.out.println("At TERMINAL_TRANSFER");
+
                     // Logger
                     Airport.logger.setPassState(this.id,"TT");
                     Airport.logger.write(false);
@@ -148,6 +152,8 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case AT_THE_DEPARTURE_TRANSFER_TERMINAL:
+                    System.out.println("At AT_THE_DEPARTURE_TRANSFER_TERMINAL");
+
                     // Logger
                     Airport.logger.setPassState(this.id,"ADTT");
                     Airport.logger.write(false);
@@ -156,12 +162,14 @@ public class Passenger extends Thread implements Serializable {
                     prepareNextLeg();
                     break;
                 case ENTERING_THE_DEPARTURE_TERMINAL:
+                    System.out.println("At ENTERING_THE_DEPARTURE_TERMINAL");
+
                     // Logger
                     Airport.logger.setPassState(this.getPId(),"EDT");
                     Airport.logger.write(false);
 
                     // Checks if this passenger is the last one to arrive the terminal, else waits for the last one to signal
-                    if(Airport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
+                    if(ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
                     {
                         this.arrivalTerminalExit.lastPassenger();
                         this.departureTerminalEntry.lastPassenger();
@@ -178,6 +186,8 @@ public class Passenger extends Thread implements Serializable {
     // Funções de estado
     private void goHome()
     {
+        System.out.println("--> PASSENGER GO HOME");
+
         this.arrivalTerminalExit.arrivedTerminal();
         setSTATE(State.EXITING_THE_ARRIVAL_TERMINAL);
     }
@@ -190,6 +200,7 @@ public class Passenger extends Thread implements Serializable {
 
     private void takeABus()
     {
+        System.out.println("PASSENGER: TAKE A BUS. THIS IS: " + this.toString());
         this.arrivalTransferTerminal.arrivedTerminal(this);
         setSTATE(State.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
     }
@@ -233,8 +244,8 @@ public class Passenger extends Thread implements Serializable {
 
         Random rd = new Random();
         Random r2 = new Random();
-        this.transit = rd.nextBoolean();
-        this.num_bags = r2.nextInt(Airport.maxBags);
+        this.transit = false;
+        this.num_bags = r2.nextInt(ClientAirport.maxBags);
         Random r = new Random();
 
         for(int i=0; i<this.num_bags ; i++)

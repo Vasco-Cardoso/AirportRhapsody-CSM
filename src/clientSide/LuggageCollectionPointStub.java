@@ -3,7 +3,9 @@ package clientSide;
 import comInf.Luggages;
 import comInf.Message;
 
-public class LuggageCollectionPointStub {
+import java.io.Serializable;
+
+public class LuggageCollectionPointStub implements Serializable {
 
     private String serverHostName = null;
 
@@ -49,9 +51,12 @@ public class LuggageCollectionPointStub {
             }
             catch (InterruptedException e) {}
         }
+        System.out.println("Writing to go coll a bag");
         outMessage = new Message (Message.GCAB, p);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
+        System.out.println("return from go coll a bag");
+
         if (inMessage.getType () != Message.ACK)
         {
             System.exit (1);

@@ -10,7 +10,7 @@ public class ServerAirport {
      *    @serialField portNumb
      */
 
-    private static final int portNumb = 22001;
+    private static final int portNumb = 22000;
     public static boolean waitConnection;                              // sinalização de actividade
 
     /**

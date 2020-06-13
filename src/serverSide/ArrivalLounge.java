@@ -1,5 +1,6 @@
 package serverSide;
 
+import clientSide.ClientAirport;
 import comInf.Luggages;
 import comInf.Message;
 import comInf.MessageException;
@@ -83,13 +84,18 @@ public class ArrivalLounge{
      * The last passenger signals the porter to wake up and proceed with his life.
      * */
     public void disembarkPassenger() {
+        System.out.println("server_side: arriv-lounge: disembark passenger ");
+
         lock.lock();
         try {
             this.numPassengers++;
+            System.out.println("server_side: arriv-lounge: disembark passenger: increasing num ");
 
             // If he is the last one leaving the plane it signals the porter
-            if (Airport.nPassengers == this.numPassengers)
+            if (ClientAirport.nPassengers == this.numPassengers)
             {
+                System.out.println("server_side: arriv-lounge: disembark passenger: signal ");
+
                 lastPassenger.signal();
             }
         }
@@ -109,7 +115,7 @@ public class ArrivalLounge{
      */
     public void takeARest()
     {
-        while(this.numPassengers != Airport.nPassengers){
+        while(this.numPassengers != ClientAirport.nPassengers){
             lock.lock();
             try
             {
@@ -117,7 +123,7 @@ public class ArrivalLounge{
 
                 // This is the end of life check, if the flights are all done the porter gets waken
                 // and his life ends.
-                if(Airport.airplanesDone){
+                if(ClientAirport.airplanesDone){
                     break;
                 }
             }

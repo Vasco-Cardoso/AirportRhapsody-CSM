@@ -3,7 +3,9 @@ package clientSide;
 import comInf.Luggages;
 import comInf.Message;
 
-public class ArrivalLoungeStub {
+import java.io.Serializable;
+
+public class ArrivalLoungeStub implements Serializable {
 
     private String serverHostName = null;
 

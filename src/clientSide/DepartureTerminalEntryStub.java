@@ -2,7 +2,9 @@ package clientSide;
 
 import comInf.Message;
 
-public class DepartureTerminalEntryStub {
+import java.io.Serializable;
+
+public class DepartureTerminalEntryStub implements Serializable {
 
     private String serverHostName = null;
 

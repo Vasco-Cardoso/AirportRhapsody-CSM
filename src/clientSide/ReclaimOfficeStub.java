@@ -2,7 +2,9 @@ package clientSide;
 
 import comInf.Message;
 
-public class ReclaimOfficeStub {
+import java.io.Serializable;
+
+public class ReclaimOfficeStub implements Serializable {
 
     private String serverHostName = null;
 
@@ -26,9 +28,12 @@ public class ReclaimOfficeStub {
             }
             catch (InterruptedException e) {}
         }
+        System.out.println("--> STUB REPORT MISSING BAGS");
         outMessage = new Message (Message.RMB, n);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
+        System.out.println("--> STUB REPORT MISSING BAGS RETURN");
+
         if (inMessage.getType () != Message.ACK)
         {
             System.exit (1);

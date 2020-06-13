@@ -3,10 +3,11 @@ package serverSide;
 import comInf.Luggages;
 import comInf.Message;
 
+import java.io.Serializable;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ArrivalTerminalExit  {
+public class ArrivalTerminalExit implements Serializable {
 
     // Locks and conditions
     ReentrantLock lock = new ReentrantLock();
@@ -30,6 +31,8 @@ public class ArrivalTerminalExit  {
         lock.lock();
         try
         {
+            System.out.println("--> ARRIVED TERMINAL INCREASING NUM");
+
             this.numPassengers++;
         }
         catch (Exception e)
