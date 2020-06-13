@@ -16,7 +16,7 @@ public class ArrTermExitMain {
 
         ClientProxy cliProxy;
 
-        scon_arrivalTerminalExit = new ServerCom (portNumb + 1);       // criação do canal de escuta e sua associação
+        scon_arrivalTerminalExit = new ServerCom (portNumb + 6);       // criação do canal de escuta e sua associação
         scon_arrivalTerminalExit.start ();
 
         arrTermExit = new ArrivalTerminalExit();;
