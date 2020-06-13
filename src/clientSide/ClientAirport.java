@@ -28,7 +28,7 @@ public class ClientAirport {
 
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging
-        String serverHostName = "afonso-N550RN";                   // nome do sistema computacional onde está o servidor
+        String serverHostName = "DESKTOP-BP4CE9V";                   // nome do sistema computacional onde está o servidor
         int serverPortNumb = 22000;                          // número do port de escuta do servidor
 
         arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);

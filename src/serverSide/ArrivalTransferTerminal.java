@@ -182,7 +182,7 @@ public class ArrivalTransferTerminal {
 
             case Message.GS:
 
-                outMessage = new Message (Message.ACK,getSpots());
+                outMessage = new Message (Message.ACK, getSpots());
                 break;
 
             case Message.CS:
