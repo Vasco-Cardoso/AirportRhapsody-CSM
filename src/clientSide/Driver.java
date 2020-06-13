@@ -38,8 +38,7 @@ public class Driver extends Thread{
             switch (this.STATE)
             {
                 case PARKING_AT_THE_ARRIVAL_TERMINAL:
-                    System.out.println("DRIVER: At the parking at the arrival term zone");
-
+                    System.out.println("DRIVER: PARKING_AT_THE_ARRIVAL_TERMINAL");
 
                     Airport.logger.setDriverState("PAAT");
                     Airport.logger.write(false);
@@ -48,6 +47,7 @@ public class Driver extends Thread{
 
                     if(!this.hasDaysWorkEnded)
                     {
+                        System.out.println("DRIVER_ OVER");
                         return;
                     }
 
@@ -61,7 +61,7 @@ public class Driver extends Thread{
                     break;
                 case DRIVING_FORWARD:
 
-                    System.out.println("DRIVER: At the driving forw zone");
+                    System.out.println("DRIVER: DRIVING_FORWARD");
 
                     Airport.logger.setDriverState("DF");
                     Airport.logger.write(false);
@@ -82,7 +82,7 @@ public class Driver extends Thread{
                     break;
                 case PARKING_AT_THE_DEPARTURE_TERMINAL:
 
-                    System.out.println("DRIVER: At the departure term zone");
+                    System.out.println("DRIVER: PARKING_AT_THE_DEPARTURE_TERMINAL");
 
                     Airport.logger.setDriverState("PADT");
                     Airport.logger.write(false);

@@ -29,7 +29,7 @@ public class ArrivalLoungeStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.DL, l.toString());   // alertar barbeiro do fim de operações
+        outMessage = new Message (Message.DL, l);   // alertar barbeiro do fim de operações
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)

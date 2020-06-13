@@ -223,7 +223,7 @@ public class Passenger extends Thread implements Serializable {
         this.arrivalLounge = arrivalLounge;
         this.luggageCollectionPoint = luggageCollectionPoint;
         this.reclaimOffice = reclaimOffice;
-        this.arrivalTransferTerminal = arrivalTransferTerminal;
+        this.arrivalTransferTerminal = arrivalTransferTerminalStub;
         this.departureTerminalEntry = departureTerminalEntry;
         this.departureTransferTerminal = departureTransferTerminal;
         this.arrivalTerminalExit = arrivalTerminalExit;
@@ -244,7 +244,7 @@ public class Passenger extends Thread implements Serializable {
 
         Random rd = new Random();
         Random r2 = new Random();
-        this.transit = false;
+        this.transit = rd.nextBoolean();
         this.num_bags = r2.nextInt(ClientAirport.maxBags);
         Random r = new Random();
 

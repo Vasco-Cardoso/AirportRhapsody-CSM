@@ -47,6 +47,8 @@ public class ArrivalLounge{
         } finally {
             lock.unlock();
         }
+        System.out.println("Saí do deposit lug");
+
     }
 
     /**

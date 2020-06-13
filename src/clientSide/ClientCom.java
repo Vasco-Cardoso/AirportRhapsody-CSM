@@ -74,62 +74,142 @@ public class ClientCom
       SocketAddress serverAddress = new InetSocketAddress (serverHostName, serverPortNumb);
 
       try
-      { commSocket = new Socket();
-        commSocket.connect (serverAddress);
+      {
+          commSocket = new Socket();
+          commSocket.connect (serverAddress);
       }
       catch (UnknownHostException e)
       {
-        e.printStackTrace ();
-        System.exit (1);
+          e.printStackTrace ();
+          System.exit (1);
       }
       catch (NoRouteToHostException e)
       {
-        e.printStackTrace ();
-        System.exit (1);
+          e.printStackTrace ();
+          System.exit (1);
       }
       catch (ConnectException e)
       {
-        if (e.getMessage ().equals ("Connection refused"))
-           success = false;
-           else {
+          if (e.getMessage ().equals ("Connection refused"))
+            success = false;
+            else
+            {
                 e.printStackTrace ();
                 System.exit (1);
-           }
+            }
       }
       catch (SocketTimeoutException e)
       {
-        success = false;
+            success = false;
+          System.out.println("ou: " + success);
       }
       catch (IOException e)                           // erro fatal --- outras causas
       {
-        e.printStackTrace ();
-        System.exit (1);
+            e.printStackTrace ();
+            System.exit (1);
       }
 
-      if (!success) return (success);
+      if (!success)
+      {
+          return success;
+      }
 
-      try
-      {
-          out = new ObjectOutputStream (commSocket.getOutputStream ());
-      }
-      catch (IOException e)
-      {
-        e.printStackTrace ();
-        System.exit (1);
-      }
 
       try
       {
-          in = new ObjectInputStream (commSocket.getInputStream ());
+            out = new ObjectOutputStream (commSocket.getOutputStream ());
       }
       catch (IOException e)
       {
-        e.printStackTrace ();
-        System.exit (1);
+            e.printStackTrace ();
+            System.exit (1);
+      }
+
+      try
+      {
+            in = new ObjectInputStream (commSocket.getInputStream ());
+      }
+      catch (IOException e)
+      {
+            e.printStackTrace ();
+            System.exit (1);
       }
 
       return (success);
    }
+
+    public boolean open (String tipo)
+    {
+        boolean success = true;
+        SocketAddress serverAddress = new InetSocketAddress (serverHostName, serverPortNumb);
+
+        try
+        {
+            commSocket = new Socket();
+            commSocket.connect (serverAddress);
+        }
+        catch (UnknownHostException e)
+        {
+            e.printStackTrace ();
+            System.exit (1);
+        }
+        catch (NoRouteToHostException e)
+        {
+            e.printStackTrace ();
+            System.exit (1);
+        }
+        catch (ConnectException e)
+        {
+            if (e.getMessage ().equals ("Connection refused"))
+                success = false;
+            else
+            {
+                e.printStackTrace ();
+                System.exit (1);
+            }
+        }
+        catch (SocketTimeoutException e)
+        {
+            success = false;
+            System.out.println("ou: " + success);
+        }
+        catch (IOException e)                           // erro fatal --- outras causas
+        {
+            e.printStackTrace ();
+            System.exit (1);
+        }
+        System.out.println("ou: " + success);
+
+        if (!success)
+        {
+            return success;
+        }
+
+
+        try
+        {
+            out = new ObjectOutputStream (commSocket.getOutputStream ());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace ();
+            System.exit (1);
+        }
+        System.out.println("ou: " + success);
+
+        try
+        {
+            in = new ObjectInputStream (commSocket.getInputStream ());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace ();
+            System.exit (1);
+        }
+        System.out.println("ou: " + success);
+
+        return (success);
+    }
 
   /**
    *  Fecho do canal de comunicação.

@@ -63,7 +63,6 @@ public class ArrivalTransferTerminalStub implements Serializable {
     }
 
     public void announcingBusBoarding(){
-
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
 
@@ -74,9 +73,12 @@ public class ArrivalTransferTerminalStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
+
         outMessage = new Message (Message.ABB);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
+        System.out.println("At ArrivalTransferTerminalStub. announcingBusBoarding: RETURN");
+
         if (inMessage.getType () != Message.ACK)
         {
             System.exit (1);
@@ -110,6 +112,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
     }
 
     public void clearSpots() {
+        System.out.println("At ArrivalTransferTerminalStub. Clear spots: ");
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -124,6 +127,10 @@ public class ArrivalTransferTerminalStub implements Serializable {
         outMessage = new Message (Message.CS);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
+
+        System.out.println("At ArrivalTransferTerminalStub. Clear spots: return");
+
+
         if (inMessage.getType () != Message.ACK)
         {
             System.exit (1);

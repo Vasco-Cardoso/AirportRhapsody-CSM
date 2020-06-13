@@ -23,8 +23,10 @@ public class ArrivalTerminalExitStub implements Serializable {
 
         Message inMessage, outMessage;
 
-        while (!con.open ())                                  // aguarda ligação
+        while (!con.open("print"))                                  // aguarda ligação
         {
+            System.out.println("OPEN IN ARRIVED TERMINAL");
+            System.out.print("-");
             try {
                 Thread.currentThread().sleep((long) (10));
             }
