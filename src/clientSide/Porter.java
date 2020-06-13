@@ -35,8 +35,8 @@ public class Porter extends Thread {
                     System.out.println("PORTER: wfptl");
 
                     // Logger
-                    Airport.logger.setPorterState("WFPL");
-                    Airport.logger.write(false);
+//                    Airport.logger.setPorterState("WFPL");
+//                    Airport.logger.write(false);
 
                     // TakeARest to check what goes next
                     arrivalLounge.takeARest();
@@ -48,8 +48,8 @@ public class Porter extends Thread {
                     System.out.println("PORTER: AT_THE_PLANES_HOLD");
 
                     // Logger
-                    Airport.logger.setPorterState("ATPH");
-                    Airport.logger.write(false);
+//                    Airport.logger.setPorterState("ATPH");
+//                    Airport.logger.write(false);
 
                     // Tries to collect a bag and either end this state or carryItToAppropriateStore
                     l = arrivalLounge.tryToCollectABag();
@@ -85,9 +85,9 @@ public class Porter extends Thread {
             setSTATE(State.AT_THE_STOREROOM);
 
             // Logger
-            Airport.logger.setnBagsStoreroom(this.storageArea.getSize());
-            Airport.logger.setPorterState("ATST");
-            Airport.logger.write(false);
+//            Airport.logger.setnBagsStoreroom(this.storageArea.getSize());
+//            Airport.logger.setPorterState("ATST");
+//            Airport.logger.write(false);
 
         }else{
 
@@ -95,9 +95,9 @@ public class Porter extends Thread {
             setSTATE(State.AT_THE_LUGGAGE_BELT_CONVEYOR);
 
             // Logger
-            Airport.logger.setnBagsConveyor(this.luggageCollectionPoint.getSize());
-            Airport.logger.setPorterState("ALBC");
-            Airport.logger.write(false);
+//            Airport.logger.setnBagsConveyor(this.luggageCollectionPoint.getSize());
+//            Airport.logger.setPorterState("ALBC");
+//            Airport.logger.write(false);
         }
     }
 
@@ -113,15 +113,15 @@ public class Porter extends Thread {
         this.storageArea = storageArea;
         this.STATE = State.WAITING_FOR_A_PLANE_TO_LAND;
 
-        Airport.logger.setPorterState("WFPL");
-        Airport.logger.write(false);
+//        Airport.logger.setPorterState("WFPL");
+//        Airport.logger.write(false);
     }
 
     public Porter() {
         this.STATE = State.WAITING_FOR_A_PLANE_TO_LAND;
 
-        Airport.logger.setPorterState("WFPL");
-        Airport.logger.write(false);
+//        Airport.logger.setPorterState("WFPL");
+//        Airport.logger.write(false);
 
     }
 

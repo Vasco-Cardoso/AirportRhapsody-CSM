@@ -84,6 +84,8 @@ public class ServerAirport {
         {
             try
             {
+                System.out.println("SERVER AIRPORT: AFTER SCONIS");
+
                 //
                 sconi_arrivalLounge = scon_arrivalLounge.accept ();                          // entrada em processo de escuta
                 cliProxy1 = new ClientProxy (sconi_arrivalLounge, arrivalLounge);  // lançamento do agente prestador do serviço
@@ -123,8 +125,9 @@ public class ServerAirport {
             }
             catch (SocketTimeoutException e)
             {
-
+                System.out.println(e.getStackTrace());
             }
+
         }
 
         // Ending all the scons

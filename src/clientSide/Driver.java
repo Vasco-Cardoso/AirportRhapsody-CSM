@@ -40,8 +40,8 @@ public class Driver extends Thread{
                 case PARKING_AT_THE_ARRIVAL_TERMINAL:
                     System.out.println("DRIVER: PARKING_AT_THE_ARRIVAL_TERMINAL");
 
-                    Airport.logger.setDriverState("PAAT");
-                    Airport.logger.write(false);
+//                    Airport.logger.setDriverState("PAAT");
+//                    Airport.logger.write(false);
 
                     arrivalTransferTerminal.clearSpots();
 
@@ -63,8 +63,8 @@ public class Driver extends Thread{
 
                     System.out.println("DRIVER: DRIVING_FORWARD");
 
-                    Airport.logger.setDriverState("DF");
-                    Airport.logger.write(false);
+//                    Airport.logger.setDriverState("DF");
+//                    Airport.logger.write(false);
 
                     try
                     {
@@ -84,8 +84,8 @@ public class Driver extends Thread{
 
                     System.out.println("DRIVER: PARKING_AT_THE_DEPARTURE_TERMINAL");
 
-                    Airport.logger.setDriverState("PADT");
-                    Airport.logger.write(false);
+//                    Airport.logger.setDriverState("PADT");
+//                    Airport.logger.write(false);
 
                     try {
                         // To simulate a trip we added a 1 second drive between stages after the first one.
@@ -107,8 +107,8 @@ public class Driver extends Thread{
                     System.out.println("At the driv bac zone");
 
 
-                    Airport.logger.setDriverState("DB");
-                    Airport.logger.write(false);
+//                    Airport.logger.setDriverState("DB");
+//                    Airport.logger.write(false);
 
                     try
                     {

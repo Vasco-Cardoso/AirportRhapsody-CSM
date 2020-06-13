@@ -25,11 +25,12 @@ public class ArrivalTransferTerminalStub implements Serializable {
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (10));
+                Thread.currentThread ().sleep ((long) (1));
             }
             catch (InterruptedException e) {}
         }
         System.out.println("after while");
+
         outMessage = new Message (Message.AT, p);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
@@ -48,7 +49,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (10));
+                Thread.currentThread ().sleep ((long) (1));
             }
             catch (InterruptedException e) {}
         }
@@ -63,13 +64,14 @@ public class ArrivalTransferTerminalStub implements Serializable {
     }
 
     public void announcingBusBoarding(){
+        System.out.println("ArrivalTransferTerminalStub: announcingBusBoarding");
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
 
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (10));
+                Thread.currentThread ().sleep ((long) (1));
             }
             catch (InterruptedException e) {}
         }
@@ -95,7 +97,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (10));
+                Thread.currentThread ().sleep ((long) (1));
             }
             catch (InterruptedException e) {}
         }
@@ -120,7 +122,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (10));
+                Thread.currentThread ().sleep ((long) (1));
             }
             catch (InterruptedException e) {}
         }
