@@ -144,6 +144,10 @@ public class Message implements Serializable
 
    private int ncollected = -1;
 
+   private String porterState = null;
+
+   private String driverState = null;
+
 
    public Message (int type)
    {
@@ -166,14 +170,6 @@ public class Message implements Serializable
    {
       msgType = type;
       this.lugg = lug;
-   }
-
-
-   public Message (int type, String name, int nIter)
-   {
-      msgType = type;
-      fName= name;
-      this.nIter = nIter;
    }
 
     public Message (int type, Luggages lug)
@@ -213,6 +209,15 @@ public class Message implements Serializable
       msgType = type;
       this.idx = idx;
       this.ncollected = nBagsCollected;
+   }
+
+   public Message(int type, String state, int pord){
+
+      if(pord == 1){
+
+         this.porterState = state;
+      }else
+         this.driverState = state;
    }
 
    public int getType() {
@@ -261,5 +266,13 @@ public class Message implements Serializable
 
    public int getNcollected() {
       return ncollected;
+   }
+
+   public String getPorterState() {
+      return porterState;
+   }
+
+   public String getDriverState() {
+      return driverState;
    }
 }

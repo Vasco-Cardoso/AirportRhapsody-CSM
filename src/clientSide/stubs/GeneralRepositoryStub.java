@@ -201,7 +201,7 @@ public class GeneralRepositoryStub {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.SDS, driverState);
+        outMessage = new Message (Message.SDS, driverState, 2);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -223,7 +223,7 @@ public class GeneralRepositoryStub {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.SPOS, porterState);
+        outMessage = new Message (Message.SPOS, porterState ,1);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)

@@ -403,11 +403,11 @@ public class GeneralRepository {
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SDS:
-                setDriverState(inMessage.getState());
+                setDriverState(inMessage.getDriverState());
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SPOS:
-                setPorterState(inMessage.getState());
+                setPorterState(inMessage.getPorterState());
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SNBCL:
