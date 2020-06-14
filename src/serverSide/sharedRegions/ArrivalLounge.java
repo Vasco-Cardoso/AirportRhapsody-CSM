@@ -4,7 +4,6 @@ import clientSide.ClientAirport;
 import comInf.Luggages;
 import comInf.Message;
 import comInf.MessageException;
-import mainProgram.Airport;
 
 import java.util.LinkedList;
 import java.util.Queue;

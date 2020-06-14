@@ -1,8 +1,8 @@
 package serverSide.sharedRegions;
 
+import clientSide.ClientAirport;
 import clientSide.entities.Passenger;
 import comInf.Message;
-import mainProgram.Airport;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -41,10 +41,6 @@ public class ArrivalTransferTerminal {
         {
             waitingQ.add(p);
             this.numPassengers++;
-
-            // Logger set
-            Airport.logger.setWaitingQueue(String.valueOf(p.getPId()));
-            Airport.logger.write(false);
         }
         catch (Exception e)
         {
@@ -70,16 +66,12 @@ public class ArrivalTransferTerminal {
             busBoarding.await();
 
             // Check if the passenger can still get in the bus
-            if(spots.size() < Airport.nSeatingPlaces)
+            if(spots.size() < ClientAirport.nSeatingPlaces)
             {
                 Passenger p = this.waitingQ.peek();
                 this.spots.add(p);
 
-                Airport.logger.setBusOcupation(String.valueOf(p.getPId()));
                 this.waitingQ.remove();
-
-                Airport.logger.setWaitingQueue("-");
-                Airport.logger.write(false);
 
                 // Check if he his the last passenger
                 if(this.spots.size() == busQsize)

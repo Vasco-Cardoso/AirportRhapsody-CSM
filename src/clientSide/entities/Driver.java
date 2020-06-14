@@ -3,7 +3,6 @@ package clientSide.entities;
 import clientSide.ClientAirport;
 import clientSide.stubs.ArrivalTransferTerminalStub;
 import clientSide.stubs.DepartureTransferTerminalStub;
-import mainProgram.Airport;
 
 import java.util.LinkedList;
 import java.util.Objects;
@@ -41,8 +40,8 @@ public class Driver extends Thread{
             switch (this.STATE)
             {
                 case PARKING_AT_THE_ARRIVAL_TERMINAL:
-//                    Airport.logger.setDriverState("PAAT");
-//                    Airport.logger.write(false);
+                    clientSide.ClientAirport.logger.setDriverState("PAAT");
+                    clientSide.ClientAirport.logger.write(false);
 
                     arrivalTransferTerminal.clearSpots();
 
@@ -60,8 +59,8 @@ public class Driver extends Thread{
 
                     break;
                 case DRIVING_FORWARD:
-                    ClientAirport.logger.setDriverState("DF");
-                    ClientAirport.logger.write(false);
+                    clientSide.ClientAirport.logger.setDriverState("DF");
+                    clientSide.ClientAirport.logger.write(false);
 
                     try
                     {
@@ -78,8 +77,8 @@ public class Driver extends Thread{
 
                     break;
                 case PARKING_AT_THE_DEPARTURE_TERMINAL:
-//                    Airport.logger.setDriverState("PADT");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setDriverState("PADT");
+                    ClientAirport.logger.write(false);
 
                     try {
                         // To simulate a trip we added a 1 second drive between stages after the first one.
@@ -98,8 +97,8 @@ public class Driver extends Thread{
 
                     break;
                 case DRIVING_BACKWARDS:
-//                    Airport.logger.setDriverState("DB");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setDriverState("DB");
+                    ClientAirport.logger.write(false);
 
                     try
                     {
@@ -143,8 +142,8 @@ public class Driver extends Thread{
         this.departureTransferTerminal = departureTransferTerminal;
         this.STATE = State.PARKING_AT_THE_ARRIVAL_TERMINAL;
 
-        Airport.logger.setDriverState("PAAT");
-        Airport.logger.write(false);
+        ClientAirport.logger.setDriverState("PAAT");
+        ClientAirport.logger.write(false);
     }
 
 

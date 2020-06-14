@@ -1,9 +1,8 @@
 package clientSide.entities;
 
-import clientSide.ClientAirport;
 import clientSide.stubs.*;
 import comInf.Luggages;
-import mainProgram.Airport;
+import clientSide.ClientAirport;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -48,8 +47,8 @@ public class Passenger extends Thread implements Serializable {
             switch (this.STATE) {
                 case AT_THE_DISEMBARKING_ZONE:
                     // Logger
-//                    Airport.logger.setPassState(this.id,"ATDZ");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.id,"ATDZ");
+                    ClientAirport.logger.write(false);
 
                     // Arrives the serverSide.sharedRegions.ArrivalLounge
                     this.arrivalLounge.disembarkPassenger();
@@ -73,8 +72,8 @@ public class Passenger extends Thread implements Serializable {
                     break;
                 case AT_THE_LUGGAGE_COLLECTION_POINT:
                     // Logger
-//                    Airport.logger.setPassState(this.id,"ATCP");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.id,"ATCP");
+                    ClientAirport.logger.write(false);
 
                     // Goes collect his bags and return the number of bags he could collect
                     num_bags_collected = this.luggageCollectionPoint.goCollectABag(this);
@@ -86,16 +85,16 @@ public class Passenger extends Thread implements Serializable {
                     }
                     else
                     {
-//                        Airport.logger.setnBagsCollected(this.id,this.num_bags_collected);
-//                        Airport.logger.write(false);
+                        ClientAirport.logger.setnBagsCollected(this.id,this.num_bags_collected);
+                        ClientAirport.logger.write(false);
 
                         goHome();
                     }
                     break;
                 case AT_THE_BAGGAGE_RECLAIM_OFFICE:
                     // Logger
-//                    Airport.logger.setPassState(this.id,"ATRO");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.id,"ATRO");
+                    ClientAirport.logger.write(false);
 
                     // Reports missing bags
                     this.reclaimOffice.reportMissingBags(num_bags - num_bags_collected);
@@ -106,11 +105,11 @@ public class Passenger extends Thread implements Serializable {
                     break;
                 case EXITING_THE_ARRIVAL_TERMINAL:
                     // Logger
-//                    Airport.logger.setPassState(this.id, "EAT");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.id, "EAT");
+                    ClientAirport.logger.write(false);
 
                     // Checks if this passenger is the last one to arrive the terminal, else waits for the last one to signal
-                    if(ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
+                    if(clientSide.ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
                     {
                         this.arrivalTerminalExit.lastPassenger();
                         this.departureTerminalEntry.lastPassenger();
@@ -124,38 +123,43 @@ public class Passenger extends Thread implements Serializable {
                     break;
                 case AT_THE_ARRIVAL_TRANSFER_TERMINAL:
                     // Logger
-//                    Airport.logger.setPassState(this.getPId(),"AATT");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.getPId(),"AATT");
+                    ClientAirport.logger.write(false);
 
                     this.arrivalTransferTerminal.enterTheBus();
+                    ClientAirport.logger.setBusOcupation(String.valueOf(this.getPId()));
+                    ClientAirport.logger.setWaitingQueue("-");
+                    ClientAirport.logger.write(false);
                     setSTATE(State.TERMINAL_TRANSFER);
 
                     break;
                 case TERMINAL_TRANSFER:
                     // Logger
-//                    Airport.logger.setPassState(this.id,"TT");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.id,"TT");
+                    ClientAirport.logger.write(false);
 
                     // Leaves the bus
                     departureTransferTerminal.leaveTheBus();
+                    ClientAirport.logger.setBusOcupation("-");
+                    ClientAirport.logger.write(false);
                     setSTATE(State.AT_THE_DEPARTURE_TRANSFER_TERMINAL);
 
                     break;
                 case AT_THE_DEPARTURE_TRANSFER_TERMINAL:
                     // Logger
-//                    Airport.logger.setPassState(this.id,"ADTT");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.id,"ADTT");
+                    ClientAirport.logger.write(false);
 
                     this.departureTransferTerminal.leaveDepartureTransferTerminal();
                     prepareNextLeg();
                     break;
                 case ENTERING_THE_DEPARTURE_TERMINAL:
                     // Logger
-//                    Airport.logger.setPassState(this.getPId(),"EDT");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setPassState(this.getPId(),"EDT");
+                    ClientAirport.logger.write(false);
 
                     // Checks if this passenger is the last one to arrive the terminal, else waits for the last one to signal
-                    if(ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
+                    if(clientSide.ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
                     {
                         this.arrivalTerminalExit.lastPassenger();
                         this.departureTerminalEntry.lastPassenger();
@@ -185,6 +189,8 @@ public class Passenger extends Thread implements Serializable {
     private void takeABus()
     {
         this.arrivalTransferTerminal.arrivedTerminal(this);
+        ClientAirport.logger.setWaitingQueue(String.valueOf(this.getPId()));
+        ClientAirport.logger.write(false);
         setSTATE(State.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
     }
 
@@ -212,8 +218,8 @@ public class Passenger extends Thread implements Serializable {
         this.arrivalTerminalExit = arrivalTerminalExit;
         this.STATE = State.AT_THE_DISEMBARKING_ZONE;
 
-        Airport.logger.setPassState(this.id,"ATDZ");
-        Airport.logger.write(false);
+        ClientAirport.logger.setPassState(this.id,"ATDZ");
+        ClientAirport.logger.write(false);
         setupPassanger();
     }
 
@@ -226,7 +232,7 @@ public class Passenger extends Thread implements Serializable {
         Random rd = new Random();
         Random r2 = new Random();
         this.transit = rd.nextBoolean();
-        this.num_bags = r2.nextInt(ClientAirport.maxBags);
+        this.num_bags = r2.nextInt(clientSide.ClientAirport.maxBags);
         Random r = new Random();
 
         for(int i=0; i<this.num_bags ; i++)
@@ -237,10 +243,10 @@ public class Passenger extends Thread implements Serializable {
             }
         }
 
-        Airport.logger.setPassSituation(this.id,this.transit);
-        Airport.logger.setnBagsStart(this.id, this.num_bags);
-        Airport.logger.setnBagsCollected(this.id, 0);
-        Airport.logger.write(false);
+        ClientAirport.logger.setPassSituation(this.id,this.transit);
+        ClientAirport.logger.setnBagsStart(this.id, this.num_bags);
+        ClientAirport.logger.setnBagsCollected(this.id, 0);
+        ClientAirport.logger.write(false);
     }
 
     public boolean isTransit() {

@@ -2,7 +2,6 @@ package serverSide.sharedRegions;
 
 import clientSide.entities.Passenger;
 import comInf.Message;
-import mainProgram.Airport;
 
 import java.util.Queue;
 import java.util.concurrent.locks.Condition;
@@ -57,8 +56,6 @@ public class DepartureTransferTerminal{
         try {
             letPassOff.await();
 
-            Airport.logger.setBusOcupation("-");
-            Airport.logger.write(false);
             this.numPassengers++;
 
             // Checks if he is the last passenger to he can signal others.
