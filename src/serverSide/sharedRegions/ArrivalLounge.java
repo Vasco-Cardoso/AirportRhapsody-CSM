@@ -4,6 +4,7 @@ import clientSide.ClientAirport;
 import comInf.Luggages;
 import comInf.Message;
 import comInf.MessageException;
+import serverSide.ArrLoungeMain;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,6 +19,8 @@ public class ArrivalLounge{
     // Locks and conditions
     ReentrantLock lock = new ReentrantLock();
     Condition lastPassenger = lock.newCondition();
+
+    boolean end = false;
 
 
     public ArrivalLounge()
@@ -73,8 +76,6 @@ public class ArrivalLounge{
             lock.unlock();
         }
 
-        System.out.println("LUGGAGE É: " + l);
-
         return l;
     }
 
@@ -108,17 +109,23 @@ public class ArrivalLounge{
      */
     public void takeARest()
     {
-        while(this.numPassengers != ClientAirport.nPassengers){
+        while((this.numPassengers != ClientAirport.nPassengers)){
             lock.lock();
             try
             {
+                if(ClientAirport.airplanesDone) {
+                    return;
+                }
+
                 lastPassenger.await();
+
+                if(end) {
+                    return;
+                }
 
                 // This is the end of life check, if the flights are all done the porter gets waken
                 // and his life ends.
-                if(ClientAirport.airplanesDone){
-                    break;
-                }
+
             }
             catch (InterruptedException e)
             {
@@ -145,6 +152,7 @@ public class ArrivalLounge{
         try
         {
             lastPassenger.signalAll();
+            end = true;
         }
         catch (Exception e)
         {
@@ -156,7 +164,7 @@ public class ArrivalLounge{
     }
 
     public void terminate(){
-
+        ArrLoungeMain.waitConnection = false;
        System.exit(1);
     }
 
@@ -194,7 +202,6 @@ public class ArrivalLounge{
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

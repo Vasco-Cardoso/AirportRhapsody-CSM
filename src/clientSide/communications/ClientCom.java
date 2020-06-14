@@ -4,9 +4,13 @@ import java.io.*;
 import java.net.*;
 
 /**
- *   Este tipo de dados implementa o canal de comunicação, lado do cliente, para uma comunicação
- *   baseada em passagem de mensagens sobre sockets usando o protocolo TCP.
- *   A transferência de dados é baseada em objectos, um objecto de cada vez.
+ * Client communication channel data type Uses TCP sockets and object-based data
+ * transfer
+ *
+ * @author Afonso Guimarães
+ * @author Vasco Cardoso
+ *
+ * @version 1.0
  */
 
 public class ClientCom

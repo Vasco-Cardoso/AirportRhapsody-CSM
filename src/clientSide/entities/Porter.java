@@ -32,13 +32,16 @@ public class Porter extends Thread {
     {
         while(!ClientAirport.airplanesDone)
         {
-            System.out.println("airplanes done: "+ClientAirport.airplanesDone);
             switch(this.STATE)
             {
                 case WAITING_FOR_A_PLANE_TO_LAND:
                     // Logger
                     ClientAirport.logger.setPorterState("WFPL");
                     ClientAirport.logger.write(false);
+
+                    if(ClientAirport.airplanesDone) {
+                        break;
+                    }
 
                     // TakeARest to check what goes next
                     arrivalLounge.takeARest();

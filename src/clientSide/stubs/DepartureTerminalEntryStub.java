@@ -5,6 +5,10 @@ import comInf.Message;
 
 import java.io.Serializable;
 
+
+/**
+ * Stub responsible to send the messages needed for the DepartureTerminalEntryStub to procede with actions
+ */
 public class DepartureTerminalEntryStub implements Serializable {
 
     private String serverHostName = null;
@@ -143,12 +147,6 @@ public class DepartureTerminalEntryStub implements Serializable {
         }
         outMessage = new Message (Message.TERM);
         con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
         con.close ();
     }
 }

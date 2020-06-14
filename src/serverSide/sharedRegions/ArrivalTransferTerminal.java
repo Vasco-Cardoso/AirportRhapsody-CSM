@@ -3,6 +3,7 @@ package serverSide.sharedRegions;
 import clientSide.ClientAirport;
 import clientSide.entities.Passenger;
 import comInf.Message;
+import serverSide.ArrTransfTermMain;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -152,7 +153,7 @@ public class ArrivalTransferTerminal {
     }
 
     public void terminate(){
-
+        ArrTransfTermMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -188,7 +189,6 @@ public class ArrivalTransferTerminal {
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

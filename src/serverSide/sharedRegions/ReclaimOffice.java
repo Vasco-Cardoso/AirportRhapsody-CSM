@@ -1,6 +1,7 @@
 package serverSide.sharedRegions;
 
 import comInf.Message;
+import serverSide.ReclaimOfficeMain;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -42,7 +43,7 @@ public class ReclaimOffice {
     }
 
     public void terminate(){
-
+        ReclaimOfficeMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -63,7 +64,6 @@ public class ReclaimOffice {
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

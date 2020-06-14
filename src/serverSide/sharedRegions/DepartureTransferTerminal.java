@@ -2,6 +2,7 @@ package serverSide.sharedRegions;
 
 import clientSide.entities.Passenger;
 import comInf.Message;
+import serverSide.DepTransfTermMain;
 
 import java.util.Queue;
 import java.util.concurrent.locks.Condition;
@@ -124,7 +125,7 @@ public class DepartureTransferTerminal{
     }
 
     public void terminate(){
-
+        DepTransfTermMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -160,7 +161,6 @@ public class DepartureTransferTerminal{
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

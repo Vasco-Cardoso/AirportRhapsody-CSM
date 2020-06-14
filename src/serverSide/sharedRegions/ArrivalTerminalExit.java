@@ -2,6 +2,7 @@ package serverSide.sharedRegions;
 
 import comInf.Luggages;
 import comInf.Message;
+import serverSide.ArrTermExitMain;
 
 import java.io.Serializable;
 import java.util.concurrent.locks.Condition;
@@ -109,7 +110,7 @@ public class ArrivalTerminalExit implements Serializable {
     }
 
     public void terminate(){
-
+        ArrTermExitMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -145,7 +146,6 @@ public class ArrivalTerminalExit implements Serializable {
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

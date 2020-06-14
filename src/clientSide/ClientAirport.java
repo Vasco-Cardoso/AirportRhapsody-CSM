@@ -5,10 +5,12 @@ import clientSide.entities.Passenger;
 import clientSide.entities.Porter;
 import clientSide.stubs.*;
 
+import java.util.Scanner;
+
 public class ClientAirport {
 
     public static int nPassengers = 6 ;                               // number of passengers
-    public static int nPlaneLandings = 1;                             // number of plane landings
+    public static int nPlaneLandings = 5;                             // number of plane landings
     public static int nSeatingPlaces = 3;                             // bus capacity
     public static int maxBags = 3;                                    // maximum luggage
     public static boolean airplanesDone = false;
@@ -28,10 +30,13 @@ public class ClientAirport {
         ReclaimOfficeStub reclaimOfficeStub;
         StorageAreaStub storageAreaStub;
 
+        Scanner scanner = new Scanner(System. in);
 
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging
-        String serverHostName = "DESKTOP-BP4CE9V";           // nome do sistema computacional onde está o servidor
+        System.out.print("Nome do sistema computacional onde está o servidor? ");
+        String serverHostName = scanner. nextLine();
+        //String serverHostName = "afonso-N550RN";           // nome do sistema computacional onde está o servidor
         int serverPortNumb = 22000;                          // número do port de escuta do servidor
 
         arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);
@@ -81,7 +86,7 @@ public class ClientAirport {
             arrivalTerminalExitStub.setEmpty();
             departureTerminalEntryStub.setEmpty();
         }
-        airplanesDone = true;
+        ClientAirport.airplanesDone = true;
         System.out.println("------------- FLIGHTS OVER ---------------");
 
         // Signalling the Porter, stuck at TakeARest to wake up and end his life.
@@ -89,6 +94,7 @@ public class ClientAirport {
 
         // Signal porter, it is over.
         busDriver.setHasDaysWorkEnded();
+
 
         // Join the busDriver to end his life.
         try
@@ -100,7 +106,6 @@ public class ClientAirport {
             e.fillInStackTrace();
         }
 
-        System.out.println("Ending busDriver");
 
         // Logging the last things
         logger.setnLostBags(reclaimOfficeStub.getnLuggagesLost());
@@ -116,8 +121,15 @@ public class ClientAirport {
             e.fillInStackTrace();
         }
 
-        System.out.println("Ending porter");
-
+        arrivalLoungeStub.terminate();
+        luggageCollectionPointStub.terminate();
+        reclaimOfficeStub.terminate();
+        arrivalTransferTerminalStub.terminate();
+        departureTransferTerminalStub.terminate();
+        arrivalTerminalExitStub.terminate();
+        departureTerminalEntryStub.terminate();
+        storageAreaStub.terminate();
+        logger.terminate();
 
     }
 }

@@ -2,6 +2,8 @@ package serverSide.repository;
 
 import comInf.Luggages;
 import comInf.Message;
+import serverSide.ArrLoungeMain;
+import serverSide.GenRepoMain;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -358,6 +360,11 @@ public class GeneralRepository {
         }
     }
 
+    public void terminate(){
+        GenRepoMain.waitConnection = false;
+        System.exit(1);
+    }
+
     public Message processAndReply(Message inMessage) {
 
         Message outMessage = null;                           // mensagem de resposta
@@ -430,6 +437,10 @@ public class GeneralRepository {
                 write(inMessage.getSituation());
                 outMessage = new Message (Message.ACK);
                 break;
+            case Message.TERM:
+                terminate();
+                break;
+
         }
 
         return outMessage;

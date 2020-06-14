@@ -1,0 +1,10 @@
+clientSide
+clientSide.communications
+clientSide.entities
+clientSide.stubs
+comInf
+serverSide
+serverSide.communications
+serverSide.proxy
+serverSide.repository
+serverSide.sharedRegions

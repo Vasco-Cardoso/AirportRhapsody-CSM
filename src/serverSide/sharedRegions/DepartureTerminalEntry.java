@@ -1,6 +1,7 @@
 package serverSide.sharedRegions;
 
 import comInf.Message;
+import serverSide.DepTermEntMain;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -98,7 +99,7 @@ public class DepartureTerminalEntry{
     }
 
     public void terminate(){
-
+        DepTermEntMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -133,7 +134,6 @@ public class DepartureTerminalEntry{
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

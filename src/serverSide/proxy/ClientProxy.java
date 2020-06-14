@@ -11,7 +11,12 @@ import serverSide.sharedRegions.*;
  *   threads barbeiro.
  *   A comunicação baseia-se em passagem de mensagens sobre sockets usando o protocolo TCP.
  */
-
+/**
+ * Proxys used by the SharedRegions
+ *
+ * @author Afonso Guimarães
+ * @author Vasco Cardoso
+ */
 public class ClientProxy extends Thread
 {
 
@@ -55,6 +60,12 @@ public class ClientProxy extends Thread
    *
    */
 
+
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalLounge
+     * @param sconi
+     * @param arrivalLounge
+     */
    public ClientProxy (ServerCom sconi, ArrivalLounge arrivalLounge)
    {
       super ("Proxy_" + ClientProxy.getProxyId ());
@@ -64,6 +75,11 @@ public class ClientProxy extends Thread
       this.type = 1;
    }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for luggageCollectionPoint
+     * @param sconi
+     * @param luggageCollectionPoint
+     */
     public ClientProxy (ServerCom sconi, LuggageCollectionPoint luggageCollectionPoint)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -73,6 +89,11 @@ public class ClientProxy extends Thread
         this.type = 2;
     }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalTerminalExit
+     * @param sconi
+     * @param arrivalTerminalExit
+     */
     public ClientProxy (ServerCom sconi, ArrivalTerminalExit arrivalTerminalExit)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -82,6 +103,11 @@ public class ClientProxy extends Thread
         this.type = 3;
     }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalTerminalExit
+     * @param sconi
+     * @param arrivalTransferTerminal
+     */
     public ClientProxy (ServerCom sconi, ArrivalTransferTerminal arrivalTransferTerminal)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -91,6 +117,11 @@ public class ClientProxy extends Thread
         this.type = 4;
     }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalTerminalExit
+     * @param sconi
+     * @param departureTerminalEntry
+     */
     public ClientProxy (ServerCom sconi, DepartureTerminalEntry departureTerminalEntry)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -100,6 +131,11 @@ public class ClientProxy extends Thread
         this.type = 5;
     }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalTerminalExit
+     * @param sconi
+     * @param departureTransferTerminal
+     */
     public ClientProxy (ServerCom sconi, DepartureTransferTerminal departureTransferTerminal)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -109,6 +145,11 @@ public class ClientProxy extends Thread
         this.type = 6;
     }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalTerminalExit
+     * @param sconi
+     * @param reclaimOffice
+     */
     public ClientProxy (ServerCom sconi, ReclaimOffice reclaimOffice)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -118,6 +159,11 @@ public class ClientProxy extends Thread
         this.type = 7;
     }
 
+    /**
+     * Proxy that will be used to instanciate e proxy for ArrivalTerminalExit
+     * @param sconi
+     * @param storageArea
+     */
     public ClientProxy (ServerCom sconi, StorageArea storageArea)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());
@@ -127,6 +173,11 @@ public class ClientProxy extends Thread
         this.type = 8;
     }
 
+    /**
+     *
+     * @param sconi
+     * @param genrepo
+     */
     public ClientProxy (ServerCom sconi, GeneralRepository genrepo)
     {
         super ("Proxy_" + ClientProxy.getProxyId ());

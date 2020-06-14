@@ -7,6 +7,9 @@ import comInf.Message;
 import java.io.Serializable;
 import java.util.Queue;
 
+/**
+ * Stub responsible to send the messages needed for the ArrivalTransferTerminalStub to procede with actions
+ */
 public class ArrivalTransferTerminalStub implements Serializable {
 
     private String serverHostName = null;
@@ -146,12 +149,6 @@ public class ArrivalTransferTerminalStub implements Serializable {
         }
         outMessage = new Message (Message.TERM);
         con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
         con.close ();
     }
 }

@@ -3,6 +3,7 @@ package serverSide.sharedRegions;
 import comInf.Luggages;
 import clientSide.entities.Passenger;
 import comInf.Message;
+import serverSide.LugColPointMain;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -120,7 +121,7 @@ public class LuggageCollectionPoint{
     }
 
     public void terminate(){
-
+        LugColPointMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -155,7 +156,6 @@ public class LuggageCollectionPoint{
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }

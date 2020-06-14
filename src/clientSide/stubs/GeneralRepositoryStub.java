@@ -3,6 +3,10 @@ package clientSide.stubs;
 import clientSide.communications.ClientCom;
 import comInf.Message;
 
+
+/**
+ * Stub responsible to send the messages needed for the GeneralRepositoryStub to procede with actions
+ */
 public class GeneralRepositoryStub {
 
     private String serverHostName = null;
@@ -356,12 +360,6 @@ public class GeneralRepositoryStub {
         }
         outMessage = new Message (Message.TERM);
         con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
         con.close ();
     }
 }

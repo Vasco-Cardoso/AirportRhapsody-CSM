@@ -2,6 +2,7 @@ package serverSide.sharedRegions;
 
 import comInf.Luggages;
 import comInf.Message;
+import serverSide.StorageAreaMain;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -28,7 +29,7 @@ public class StorageArea {
     }
 
     public void terminate(){
-
+        StorageAreaMain.waitConnection = false;
         System.exit(1);
     }
 
@@ -48,7 +49,6 @@ public class StorageArea {
                 break;
 
             case Message.TERM:
-                outMessage = new Message(Message.ACK);
                 terminate();
                 break;
         }
