@@ -1,5 +1,9 @@
 package serverSide;
 
+import serverSide.communications.ServerCom;
+import serverSide.proxy.ClientProxy;
+import serverSide.sharedRegions.ArrivalLounge;
+
 import java.net.SocketTimeoutException;
 
 public class ArrLoungeMain {
@@ -27,15 +31,12 @@ public class ArrLoungeMain {
         {
             try
             {
-                System.out.println("SERVER AIRPORT: AFTER SCONIS");
-
                 sconi_arrivalLounge = scon_arrivalLounge.accept ();                          // entrada em processo de escuta
                 cliProxy = new ClientProxy (sconi_arrivalLounge, arrivalLounge);  // lançamento do agente prestador do serviço
                 cliProxy.start ();
             }
             catch (SocketTimeoutException e)
             {
-                System.out.println(e.getStackTrace());
             }
         }
 

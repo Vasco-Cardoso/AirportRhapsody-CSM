@@ -1,4 +1,4 @@
-package serverSide;
+package serverSide.sharedRegions;
 
 import comInf.Luggages;
 import comInf.Message;
@@ -16,7 +16,7 @@ public class StorageArea {
     }
 
     /**
-     * Allows to store luggages on the serverSide.StorageArea
+     * Allows to store luggages on the serverSide.sharedRegions.StorageArea
      * @param lug
      */
     public void depositLuggage(Luggages lug){

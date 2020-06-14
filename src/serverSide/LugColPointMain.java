@@ -1,5 +1,9 @@
 package serverSide;
 
+import serverSide.communications.ServerCom;
+import serverSide.proxy.ClientProxy;
+import serverSide.sharedRegions.LuggageCollectionPoint;
+
 import java.net.SocketTimeoutException;
 
 public class LugColPointMain {
@@ -26,15 +30,12 @@ public class LugColPointMain {
         {
             try
             {
-                System.out.println("SERVER AIRPORT: AFTER SCONIS");
-
                 sconi_luggageCollectionPoint = scon_luggageCollectionPoint.accept ();                          // entrada em processo de escuta
                 cliProxy = new ClientProxy (sconi_luggageCollectionPoint, collPoint);  // lançamento do agente prestador do serviço
                 cliProxy.start ();
             }
             catch (SocketTimeoutException e)
             {
-                System.out.println(e.getStackTrace());
             }
         }
 

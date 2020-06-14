@@ -1,5 +1,9 @@
 package serverSide;
 
+import serverSide.communications.ServerCom;
+import serverSide.proxy.ClientProxy;
+import serverSide.sharedRegions.StorageArea;
+
 import java.net.SocketTimeoutException;
 
 public class StorageAreaMain {
@@ -26,15 +30,12 @@ public class StorageAreaMain {
         {
             try
             {
-                System.out.println("SERVER AIRPORT: AFTER SCONIS");
-
                 sconi_storageAreaStub = scon_storageAreaStub.accept ();                          // entrada em processo de escuta
                 cliProxy = new ClientProxy (sconi_storageAreaStub, tempStorageArea);  // lançamento do agente prestador do serviço
                 cliProxy.start ();
             }
             catch (SocketTimeoutException e)
             {
-                System.out.println(e.getStackTrace());
             }
         }
 

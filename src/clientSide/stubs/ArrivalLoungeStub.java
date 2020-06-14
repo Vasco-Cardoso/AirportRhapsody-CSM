@@ -1,22 +1,24 @@
-package clientSide;
+package clientSide.stubs;
 
+import clientSide.communications.ClientCom;
+import comInf.Luggages;
 import comInf.Message;
 
 import java.io.Serializable;
 
-public class DepartureTerminalEntryStub implements Serializable {
+public class ArrivalLoungeStub implements Serializable {
 
     private String serverHostName = null;
 
     private int serverPortNumb;
 
-    public DepartureTerminalEntryStub (String hostName, int port)
+    public ArrivalLoungeStub (String hostName, int port)
     {
         serverHostName = hostName;
         serverPortNumb = port;
     }
 
-    public void arrivedTerminal(){
+    public void depositLuggage(Luggages l){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -28,7 +30,7 @@ public class DepartureTerminalEntryStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.AT);
+        outMessage = new Message (Message.DL, l);   // alertar barbeiro do fim de operações
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -38,7 +40,7 @@ public class DepartureTerminalEntryStub implements Serializable {
         con.close ();
     }
 
-    public void waitLastPassenger(){
+    public Luggages tryToCollectABag(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -50,7 +52,7 @@ public class DepartureTerminalEntryStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.WLP);
+        outMessage = new Message (Message.TTCB);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -58,9 +60,11 @@ public class DepartureTerminalEntryStub implements Serializable {
             System.exit (1);
         }
         con.close ();
+
+        return inMessage.getLuggage();
     }
 
-    public void lastPassenger(){
+    public void disembarkPassenger(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -72,7 +76,7 @@ public class DepartureTerminalEntryStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.LP);
+        outMessage = new Message (Message.DP);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -82,8 +86,7 @@ public class DepartureTerminalEntryStub implements Serializable {
         con.close ();
     }
 
-
-    public int getNumPassengers() {
+    public void takeARest(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -95,7 +98,7 @@ public class DepartureTerminalEntryStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.GNP);
+        outMessage = new Message (Message.TR);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -103,11 +106,9 @@ public class DepartureTerminalEntryStub implements Serializable {
             System.exit (1);
         }
         con.close ();
-
-        return inMessage.getN();
     }
 
-    public void setEmpty() {
+    public void signalEnd(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;

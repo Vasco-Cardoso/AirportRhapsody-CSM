@@ -1,4 +1,4 @@
-package serverSide;
+package serverSide.repository;
 
 import java.io.File;
 import java.io.FileWriter;

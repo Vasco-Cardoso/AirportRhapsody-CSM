@@ -1,23 +1,23 @@
-package clientSide;
+package clientSide.stubs;
 
-import comInf.Luggages;
+import clientSide.communications.ClientCom;
 import comInf.Message;
 
 import java.io.Serializable;
 
-public class LuggageCollectionPointStub implements Serializable {
+public class DepartureTerminalEntryStub implements Serializable {
 
     private String serverHostName = null;
 
     private int serverPortNumb;
 
-    public LuggageCollectionPointStub (String hostName, int port)
+    public DepartureTerminalEntryStub (String hostName, int port)
     {
         serverHostName = hostName;
         serverPortNumb = port;
     }
 
-    public void depositLuggage(Luggages l){
+    public void arrivedTerminal(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -29,7 +29,7 @@ public class LuggageCollectionPointStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.DL, l);
+        outMessage = new Message (Message.AT);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -39,7 +39,7 @@ public class LuggageCollectionPointStub implements Serializable {
         con.close ();
     }
 
-    public int goCollectABag(Passenger p){
+    public void waitLastPassenger(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -51,12 +51,54 @@ public class LuggageCollectionPointStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        System.out.println("Writing to go coll a bag");
-        outMessage = new Message (Message.GCAB, p);
+        outMessage = new Message (Message.WLP);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
-        System.out.println("return from go coll a bag");
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
+    }
 
+    public void lastPassenger(){
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+
+        while (!con.open ())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread ().sleep ((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+        outMessage = new Message (Message.LP);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
+    }
+
+
+    public int getNumPassengers() {
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+
+        while (!con.open ())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread ().sleep ((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+        outMessage = new Message (Message.GNP);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
         {
             System.exit (1);
@@ -66,7 +108,7 @@ public class LuggageCollectionPointStub implements Serializable {
         return inMessage.getN();
     }
 
-    public void noMoreBagsToCollect(){
+    public void setEmpty() {
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -78,7 +120,7 @@ public class LuggageCollectionPointStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.NMBTC);
+        outMessage = new Message (Message.SE);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -86,29 +128,5 @@ public class LuggageCollectionPointStub implements Serializable {
             System.exit (1);
         }
         con.close ();
-    }
-
-    public int getSize() {
-
-        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
-        Message inMessage, outMessage;
-
-        while (!con.open ())                                  // aguarda ligação
-        {
-            try {
-                Thread.currentThread ().sleep ((long) (10));
-            }
-            catch (InterruptedException e) {}
-        }
-        outMessage = new Message (Message.GS);
-        con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
-        con.close ();
-
-        return inMessage.getN();
     }
 }

@@ -1,5 +1,9 @@
 package serverSide;
 
+import serverSide.communications.ServerCom;
+import serverSide.proxy.ClientProxy;
+import serverSide.sharedRegions.DepartureTransferTerminal;
+
 import java.net.SocketTimeoutException;
 
 public class DepTransfTermMain {
@@ -26,15 +30,12 @@ public class DepTransfTermMain {
         {
             try
             {
-                System.out.println("SERVER AIRPORT: AFTER SCONIS");
-
                 sconi_departureTransferTerminal = scon_departureTransferTerminal.accept ();                          // entrada em processo de escuta
                 cliProxy = new ClientProxy (sconi_departureTransferTerminal, depTransQuay);  // lançamento do agente prestador do serviço
                 cliProxy.start ();
             }
             catch (SocketTimeoutException e)
             {
-                System.out.println(e.getStackTrace());
             }
         }
 

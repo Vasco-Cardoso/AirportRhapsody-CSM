@@ -1,4 +1,4 @@
-package clientSide;
+package clientSide.communications;
 
 import java.io.*;
 import java.net.*;
@@ -101,7 +101,6 @@ public class ClientCom
       catch (SocketTimeoutException e)
       {
             success = false;
-          System.out.println("ou: " + success);
       }
       catch (IOException e)                           // erro fatal --- outras causas
       {
@@ -138,78 +137,6 @@ public class ClientCom
       return (success);
    }
 
-    public boolean open (String tipo)
-    {
-        boolean success = true;
-        SocketAddress serverAddress = new InetSocketAddress (serverHostName, serverPortNumb);
-
-        try
-        {
-            commSocket = new Socket();
-            commSocket.connect (serverAddress);
-        }
-        catch (UnknownHostException e)
-        {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        catch (NoRouteToHostException e)
-        {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        catch (ConnectException e)
-        {
-            if (e.getMessage ().equals ("Connection refused"))
-                success = false;
-            else
-            {
-                e.printStackTrace ();
-                System.exit (1);
-            }
-        }
-        catch (SocketTimeoutException e)
-        {
-            success = false;
-            System.out.println("ou: " + success);
-        }
-        catch (IOException e)                           // erro fatal --- outras causas
-        {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        System.out.println("ou: " + success);
-
-        if (!success)
-        {
-            return success;
-        }
-
-
-        try
-        {
-            out = new ObjectOutputStream (commSocket.getOutputStream ());
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        System.out.println("ou: " + success);
-
-        try
-        {
-            in = new ObjectInputStream (commSocket.getInputStream ());
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace ();
-            System.exit (1);
-        }
-        System.out.println("ou: " + success);
-
-        return (success);
-    }
 
   /**
    *  Fecho do canal de comunicação.

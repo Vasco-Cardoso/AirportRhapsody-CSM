@@ -1,6 +1,6 @@
-package serverSide;
+package serverSide.sharedRegions;
 
-import clientSide.Passenger;
+import clientSide.entities.Passenger;
 import comInf.Message;
 import mainProgram.Airport;
 
@@ -33,7 +33,7 @@ public class ArrivalTransferTerminal {
     /**
      * A new passenger arrives the terminal and adds himself on the queue
      * while increasing the variable numPassengers.
-     * @param p -> clientSide.Passenger arriving
+     * @param p -> clientSide.entities.Passenger arriving
      */
     public void arrivedTerminal(Passenger p){
         lock.lock();

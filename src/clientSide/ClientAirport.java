@@ -1,6 +1,10 @@
 package clientSide;
 
-import serverSide.GeneralRepository;
+import clientSide.entities.Driver;
+import clientSide.entities.Passenger;
+import clientSide.entities.Porter;
+import clientSide.stubs.*;
+import serverSide.repository.GeneralRepository;
 
 public class ClientAirport {
 

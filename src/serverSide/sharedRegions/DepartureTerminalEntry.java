@@ -1,4 +1,4 @@
-package serverSide;
+package serverSide.sharedRegions;
 
 import comInf.Message;
 
@@ -36,7 +36,7 @@ public class DepartureTerminalEntry{
 
     /**
      * Method that awaits the last passenger to arrive the
-     * serverSide.DepartureTerminalEntry (Uses lock condition).
+     * serverSide.sharedRegions.DepartureTerminalEntry (Uses lock condition).
      */
     public void waitLastPassenger(){
         lock.lock();

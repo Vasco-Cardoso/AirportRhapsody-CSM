@@ -1,22 +1,24 @@
-package clientSide;
+package clientSide.stubs;
 
+import clientSide.communications.ClientCom;
+import comInf.Luggages;
 import comInf.Message;
 
 import java.io.Serializable;
 
-public class ReclaimOfficeStub implements Serializable {
+public class StorageAreaStub implements Serializable {
 
     private String serverHostName = null;
 
     private int serverPortNumb;
 
-    public ReclaimOfficeStub (String hostName, int port)
+    public StorageAreaStub (String hostName, int port)
     {
         serverHostName = hostName;
         serverPortNumb = port;
     }
 
-    public void reportMissingBags(int n){
+    public void depositLuggage(Luggages l){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -28,12 +30,9 @@ public class ReclaimOfficeStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        System.out.println("--> STUB REPORT MISSING BAGS");
-        outMessage = new Message (Message.RMB, n);
+        outMessage = new Message (Message.DL, l);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
-        System.out.println("--> STUB REPORT MISSING BAGS RETURN");
-
         if (inMessage.getType () != Message.ACK)
         {
             System.exit (1);
@@ -41,7 +40,7 @@ public class ReclaimOfficeStub implements Serializable {
         con.close ();
     }
 
-    public int getnLuggagesLost() {
+    public int getSize() {
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -53,7 +52,7 @@ public class ReclaimOfficeStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.GNLL);
+        outMessage = new Message (Message.GS);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)

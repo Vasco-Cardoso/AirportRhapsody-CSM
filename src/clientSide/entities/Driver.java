@@ -1,5 +1,7 @@
-package clientSide;
+package clientSide.entities;
 
+import clientSide.stubs.ArrivalTransferTerminalStub;
+import clientSide.stubs.DepartureTransferTerminalStub;
 import mainProgram.Airport;
 
 import java.util.LinkedList;
@@ -9,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Driver extends Thread{
 
-    // Possible different states of the clientSide.Driver
+    // Possible different states of the clientSide.entities.Driver
     enum State {
         PARKING_AT_THE_ARRIVAL_TERMINAL,
         DRIVING_FORWARD,

@@ -1,8 +1,12 @@
 package serverSide;
 
+import serverSide.communications.ServerCom;
+import serverSide.proxy.ClientProxy;
+import serverSide.sharedRegions.ReclaimOffice;
+
 import java.net.SocketTimeoutException;
 
-public class RecOfMain {
+public class ReclaimOfficeMain {
 
     private static final int portNumb = 22000;
     public static boolean waitConnection;
@@ -26,15 +30,12 @@ public class RecOfMain {
         {
             try
             {
-                System.out.println("SERVER AIRPORT: AFTER SCONIS");
-
                 sconi_reclaimOffice = scon_reclaimOffice.accept ();                          // entrada em processo de escuta
                 cliProxy = new ClientProxy (sconi_reclaimOffice, reclaimOffice);  // lançamento do agente prestador do serviço
                 cliProxy.start ();
             }
             catch (SocketTimeoutException e)
             {
-                System.out.println(e.getStackTrace());
             }
         }
 

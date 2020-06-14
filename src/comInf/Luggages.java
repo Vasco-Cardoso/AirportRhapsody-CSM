@@ -1,6 +1,6 @@
 package comInf;
 
-import clientSide.Passenger;
+import clientSide.entities.Passenger;
 
 import java.io.Serializable;
 import java.util.Objects;

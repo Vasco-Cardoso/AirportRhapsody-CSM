@@ -1,37 +1,37 @@
-package clientSide;
+package clientSide.stubs;
 
+import clientSide.communications.ClientCom;
+import clientSide.entities.Passenger;
+import comInf.Luggages;
 import comInf.Message;
 
 import java.io.Serializable;
-import java.util.Queue;
 
-public class ArrivalTransferTerminalStub implements Serializable {
+public class LuggageCollectionPointStub implements Serializable {
 
     private String serverHostName = null;
 
     private int serverPortNumb;
 
-    public ArrivalTransferTerminalStub (String hostName, int port)
+    public LuggageCollectionPointStub (String hostName, int port)
     {
         serverHostName = hostName;
         serverPortNumb = port;
     }
 
-    public void arrivedTerminal(Passenger p){
-        System.out.println("At ArrivalTransferTerminalStub. Pass: " + p.toString());
+    public void depositLuggage(Luggages l){
+
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
 
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (1));
+                Thread.currentThread ().sleep ((long) (10));
             }
             catch (InterruptedException e) {}
         }
-        System.out.println("after while");
-
-        outMessage = new Message (Message.AT, p);
+        outMessage = new Message (Message.DL, l);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -41,7 +41,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
         con.close ();
     }
 
-    public void enterTheBus(){
+    public int goCollectABag(Passenger p){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -49,11 +49,36 @@ public class ArrivalTransferTerminalStub implements Serializable {
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (1));
+                Thread.currentThread ().sleep ((long) (10));
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.ETB);
+        outMessage = new Message (Message.GCAB, p);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
+
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
+
+        return inMessage.getN();
+    }
+
+    public void noMoreBagsToCollect(){
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+
+        while (!con.open ())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread ().sleep ((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+        outMessage = new Message (Message.NMBTC);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -63,33 +88,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
         con.close ();
     }
 
-    public void announcingBusBoarding(){
-        System.out.println("ArrivalTransferTerminalStub: announcingBusBoarding");
-        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
-        Message inMessage, outMessage;
-
-        while (!con.open ())                                  // aguarda ligação
-        {
-            try {
-                Thread.currentThread ().sleep ((long) (1));
-            }
-            catch (InterruptedException e) {}
-        }
-
-        outMessage = new Message (Message.ABB);
-        con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-        System.out.println("At ArrivalTransferTerminalStub. announcingBusBoarding: RETURN");
-
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
-        con.close ();
-    }
-
-
-    public Queue<Passenger> getSpots() {
+    public int getSize() {
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -97,7 +96,7 @@ public class ArrivalTransferTerminalStub implements Serializable {
         while (!con.open ())                                  // aguarda ligação
         {
             try {
-                Thread.currentThread ().sleep ((long) (1));
+                Thread.currentThread ().sleep ((long) (10));
             }
             catch (InterruptedException e) {}
         }
@@ -110,33 +109,6 @@ public class ArrivalTransferTerminalStub implements Serializable {
         }
         con.close ();
 
-        return inMessage.getSeats();
-    }
-
-    public void clearSpots() {
-        System.out.println("At ArrivalTransferTerminalStub. Clear spots: ");
-
-        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
-        Message inMessage, outMessage;
-
-        while (!con.open ())                                  // aguarda ligação
-        {
-            try {
-                Thread.currentThread ().sleep ((long) (1));
-            }
-            catch (InterruptedException e) {}
-        }
-        outMessage = new Message (Message.CS);
-        con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-
-        System.out.println("At ArrivalTransferTerminalStub. Clear spots: return");
-
-
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
-        con.close ();
+        return inMessage.getN();
     }
 }

@@ -1,9 +1,10 @@
 package mainProgram;
 
-import clientSide.Passenger;
-import clientSide.Porter;
-import clientSide.Driver;
-import serverSide.*;
+import clientSide.entities.Passenger;
+import clientSide.entities.Porter;
+import clientSide.entities.Driver;
+import serverSide.repository.GeneralRepository;
+import serverSide.sharedRegions.*;
 
 
 public class Airport {

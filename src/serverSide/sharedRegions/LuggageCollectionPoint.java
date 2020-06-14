@@ -1,7 +1,7 @@
-package serverSide;
+package serverSide.sharedRegions;
 
 import comInf.Luggages;
-import clientSide.Passenger;
+import clientSide.entities.Passenger;
 import comInf.Message;
 
 import java.util.LinkedList;
@@ -50,7 +50,7 @@ public class LuggageCollectionPoint{
     }
 
     /**
-     * Method that gets called by a clientSide.Passenger to go collect a bag, that only
+     * Method that gets called by a clientSide.entities.Passenger to go collect a bag, that only
      * happens if there is any bag on the conveyor that matches its ID
      * @param p Its the passenger we use to compare to the comInf.Luggages
      * @return the number of bags that a passenger was able to collect

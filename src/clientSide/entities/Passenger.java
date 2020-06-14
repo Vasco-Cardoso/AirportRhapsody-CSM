@@ -1,5 +1,7 @@
-package clientSide;
+package clientSide.entities;
 
+import clientSide.ClientAirport;
+import clientSide.stubs.*;
 import comInf.Luggages;
 import mainProgram.Airport;
 
@@ -9,7 +11,7 @@ import java.util.Random;
 
 public class Passenger extends Thread implements Serializable {
 
-    // Possible different states of the clientSide.Passenger
+    // Possible different states of the clientSide.entities.Passenger
     enum State 
     {
         AT_THE_DISEMBARKING_ZONE,
@@ -51,7 +53,7 @@ public class Passenger extends Thread implements Serializable {
 //                    Airport.logger.setPassState(this.id,"ATDZ");
 //                    Airport.logger.write(false);
 
-                    // Arrives the serverSide.ArrivalLounge
+                    // Arrives the serverSide.sharedRegions.ArrivalLounge
                     this.arrivalLounge.disembarkPassenger();
 
                     // Checks what he has to do
@@ -299,7 +301,7 @@ public class Passenger extends Thread implements Serializable {
 
     @Override
     public String toString() {
-        return "clientSide.Passenger{" +
+        return "clientSide.entities.Passenger{" +
                 "transit=" + transit +
                 ", STATE=" + STATE +
                 ", num_bags=" + num_bags +

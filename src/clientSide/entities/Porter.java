@@ -1,13 +1,16 @@
-package clientSide;
+package clientSide.entities;
 
+import clientSide.ClientAirport;
+import clientSide.stubs.ArrivalLoungeStub;
+import clientSide.stubs.LuggageCollectionPointStub;
+import clientSide.stubs.StorageAreaStub;
 import comInf.Luggages;
-import mainProgram.Airport;
 
 import java.util.Objects;
 
 
 public class Porter extends Thread {
-    // Possible different states of the clientSide.Porter
+    // Possible different states of the clientSide.entities.Porter
     enum State {
         WAITING_FOR_A_PLANE_TO_LAND,
         AT_THE_PLANES_HOLD,

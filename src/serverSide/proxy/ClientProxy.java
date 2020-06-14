@@ -1,6 +1,8 @@
-package serverSide;
+package serverSide.proxy;
 
 import comInf.Message;
+import serverSide.communications.ServerCom;
+import serverSide.sharedRegions.*;
 
 /**
  *   Este tipo de dados define o thread agente prestador de serviço para uma solução do Problema dos Barbeiros
@@ -134,7 +136,6 @@ public class ClientProxy extends Thread
               outMessage = null;                                     // mensagem de saída
 
       inMessage = (Message) sconi.readObject ();                     // ler pedido do cliente
-       System.out.println("TYPE:" + type + ", message: " + inMessage);
 
        try
       {
@@ -189,7 +190,7 @@ public class ClientProxy extends Thread
       int proxyId;                                         // identificador da instanciação
 
       try
-      { cl = Class.forName ("serverSide.ClientProxy");
+      { cl = Class.forName ("serverSide.proxy.ClientProxy");
       }
       catch (ClassNotFoundException e)
       {

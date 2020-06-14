@@ -1,4 +1,4 @@
-package serverSide;
+package serverSide.sharedRegions;
 
 import clientSide.ClientAirport;
 import comInf.Luggages;

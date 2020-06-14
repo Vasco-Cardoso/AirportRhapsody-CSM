@@ -1,23 +1,47 @@
-package clientSide;
+package clientSide.stubs;
 
+import clientSide.communications.ClientCom;
 import comInf.Message;
 
 import java.io.Serializable;
-import java.util.Queue;
 
-public class DepartureTransferTerminalStub implements Serializable {
+public class ArrivalTerminalExitStub implements Serializable {
 
     private String serverHostName = null;
 
     private int serverPortNumb;
 
-    public DepartureTransferTerminalStub (String hostName, int port)
+    public ArrivalTerminalExitStub (String hostName, int port)
     {
         serverHostName = hostName;
         serverPortNumb = port;
     }
 
-    public void leaveDepartureTransferTerminal(){
+    public void arrivedTerminal(){
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+
+        while (!con.open())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread().sleep((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+
+        outMessage = new Message (Message.AT);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
+
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
+    }
+
+    public void waitLastPassenger(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -29,7 +53,7 @@ public class DepartureTransferTerminalStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.LDTT);
+        outMessage = new Message (Message.WLP);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -39,7 +63,7 @@ public class DepartureTransferTerminalStub implements Serializable {
         con.close ();
     }
 
-    public void leaveTheBus(){
+    public void lastPassenger(){
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -51,7 +75,7 @@ public class DepartureTransferTerminalStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.LTB);
+        outMessage = new Message (Message.LP);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -61,7 +85,7 @@ public class DepartureTransferTerminalStub implements Serializable {
         con.close ();
     }
 
-    public void parkTheBusAndLetPassOff(Queue<Passenger> seats){
+    public int getNumPassengers() {
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -73,7 +97,7 @@ public class DepartureTransferTerminalStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.PTBALPO, seats);
+        outMessage = new Message (Message.GNP);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
@@ -81,9 +105,11 @@ public class DepartureTransferTerminalStub implements Serializable {
             System.exit (1);
         }
         con.close ();
+
+        return inMessage.getN();
     }
 
-    public void goToArrivalTerminal(){
+    public void setEmpty() {
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
@@ -95,29 +121,7 @@ public class DepartureTransferTerminalStub implements Serializable {
             }
             catch (InterruptedException e) {}
         }
-        outMessage = new Message (Message.GTAT);
-        con.writeObject (outMessage);
-        inMessage = (Message) con.readObject ();
-        if (inMessage.getType () != Message.ACK)
-        {
-            System.exit (1);
-        }
-        con.close ();
-    }
-
-    public void setCanleave() {
-
-        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
-        Message inMessage, outMessage;
-
-        while (!con.open ())                                  // aguarda ligação
-        {
-            try {
-                Thread.currentThread ().sleep ((long) (10));
-            }
-            catch (InterruptedException e) {}
-        }
-        outMessage = new Message (Message.SCL);
+        outMessage = new Message (Message.SE);
         con.writeObject (outMessage);
         inMessage = (Message) con.readObject ();
         if (inMessage.getType () != Message.ACK)
