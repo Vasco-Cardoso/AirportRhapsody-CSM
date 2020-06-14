@@ -1,17 +1,23 @@
-cd out/production/AirportRhapsody-CSM/
-ls
-echo "Running Shared Memories"
-java serverSide/ArrLoungeMain &
-java serverSide/ArrTermExitMain &
-java serverSide/ArrTransfTermMain &
-java serverSide/DepTermEntMain &
-java serverSide/DepTransfTermMain &
-java serverSide/LugColPointMain &
-java serverSide/RecOfMain &
-java serverSide/StorageAreaMain &
+#!/usr/bin/env sh
 
-echo "Running clients"
+# serverSide
+cd bin
+
+java serverSide.repository.GeneralRepository > GeneralRepository 
 sleep 1
-java clientSide/ClientAirport 
 
-echo "Now we wait"
+java serverSide.ArrLoungeMain > ArrLoungeMain &
+java serverSide.ArrTermExitMain > ArrTermExitMain &
+java serverSide.ArrTransfTermMain > ArrivalTerminalTransferQuay &
+java serverSide.DepTermEntMain > DepTermEntMain &
+java serverSide.DepTransfTermMain > DepTransfTermMain &
+java serverSide.LugColPointMain > LugColPointMain &
+java serverSide.RecOfMain > RecOfMain &
+java serverSide.StorageAreaMain > StorageAreaMain & 
+
+
+sleep 1
+
+# clientSide
+
+java clientSide.ClientAirport > ClientAirport 
