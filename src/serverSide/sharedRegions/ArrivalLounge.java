@@ -23,7 +23,6 @@ public class ArrivalLounge{
 
     public ArrivalLounge()
     {
-        System.out.println("Fui iniciado");
         this.numPassengers = 0;
         this.luggagesQueue = new LinkedList<>();
     }
@@ -35,7 +34,6 @@ public class ArrivalLounge{
      * */
     public void depositLuggage(Luggages lug)
     {
-        System.out.println("Entrei no deposit lug");
         lock.lock();
         try
         {
@@ -47,8 +45,6 @@ public class ArrivalLounge{
         } finally {
             lock.unlock();
         }
-        System.out.println("Saí do deposit lug");
-
     }
 
     /**
@@ -86,18 +82,12 @@ public class ArrivalLounge{
      * The last passenger signals the porter to wake up and proceed with his life.
      * */
     public void disembarkPassenger() {
-        System.out.println("server_side: arriv-lounge: disembark passenger ");
-
         lock.lock();
         try {
             this.numPassengers++;
-            System.out.println("server_side: arriv-lounge: disembark passenger: increasing num ");
-
             // If he is the last one leaving the plane it signals the porter
             if (ClientAirport.nPassengers == this.numPassengers)
             {
-                System.out.println("server_side: arriv-lounge: disembark passenger: signal ");
-
                 lastPassenger.signal();
             }
         }

@@ -35,8 +35,6 @@ public class Porter extends Thread {
             switch(this.STATE)
             {
                 case WAITING_FOR_A_PLANE_TO_LAND:
-                    System.out.println("PORTER: wfptl");
-
                     // Logger
 //                    Airport.logger.setPorterState("WFPL");
 //                    Airport.logger.write(false);
@@ -48,8 +46,6 @@ public class Porter extends Thread {
 
                     break;
                 case AT_THE_PLANES_HOLD:
-                    System.out.println("PORTER: AT_THE_PLANES_HOLD");
-
                     // Logger
 //                    Airport.logger.setPorterState("ATPH");
 //                    Airport.logger.write(false);
@@ -110,7 +106,6 @@ public class Porter extends Thread {
 
     public Porter(ArrivalLoungeStub arrivalLounge, LuggageCollectionPointStub luggageCollectionPoint, StorageAreaStub storageArea)
     {
-        System.out.println("Setting up porter");
         this.arrivalLounge = arrivalLounge;
         this.luggageCollectionPoint = luggageCollectionPoint;
         this.storageArea = storageArea;

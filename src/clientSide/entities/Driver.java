@@ -40,8 +40,6 @@ public class Driver extends Thread{
             switch (this.STATE)
             {
                 case PARKING_AT_THE_ARRIVAL_TERMINAL:
-                    System.out.println("DRIVER: PARKING_AT_THE_ARRIVAL_TERMINAL");
-
 //                    Airport.logger.setDriverState("PAAT");
 //                    Airport.logger.write(false);
 
@@ -49,7 +47,6 @@ public class Driver extends Thread{
 
                     if(!this.hasDaysWorkEnded)
                     {
-                        System.out.println("DRIVER_ OVER");
                         return;
                     }
 
@@ -62,9 +59,6 @@ public class Driver extends Thread{
 
                     break;
                 case DRIVING_FORWARD:
-
-                    System.out.println("DRIVER: DRIVING_FORWARD");
-
 //                    Airport.logger.setDriverState("DF");
 //                    Airport.logger.write(false);
 
@@ -83,9 +77,6 @@ public class Driver extends Thread{
 
                     break;
                 case PARKING_AT_THE_DEPARTURE_TERMINAL:
-
-                    System.out.println("DRIVER: PARKING_AT_THE_DEPARTURE_TERMINAL");
-
 //                    Airport.logger.setDriverState("PADT");
 //                    Airport.logger.write(false);
 
@@ -106,9 +97,6 @@ public class Driver extends Thread{
 
                     break;
                 case DRIVING_BACKWARDS:
-                    System.out.println("At the driv bac zone");
-
-
 //                    Airport.logger.setDriverState("DB");
 //                    Airport.logger.write(false);
 
@@ -128,6 +116,7 @@ public class Driver extends Thread{
                     }
             }
         }
+
     }
 
     public void parkTheBus()
@@ -147,7 +136,6 @@ public class Driver extends Thread{
 
     // Constructor
     public Driver(int n_seats, ArrivalTransferTerminalStub arrivalTransferTerminal, DepartureTransferTerminalStub departureTransferTerminal) {
-        System.out.println("Setting up driver");
         this.seats = new LinkedList<>();
         this.nseats = n_seats;
         this.arrivalTransferTerminal = arrivalTransferTerminal;

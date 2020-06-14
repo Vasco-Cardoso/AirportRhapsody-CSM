@@ -32,7 +32,7 @@ public class ClientAirport {
 
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging
-        String serverHostName = "afonso-N550RN";                   // nome do sistema computacional onde está o servidor
+        String serverHostName = "afonso-N550RN";             // nome do sistema computacional onde está o servidor
         int serverPortNumb = 22000;                          // número do port de escuta do servidor
 
         arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);
@@ -84,7 +84,7 @@ public class ClientAirport {
         airplanesDone = true;
         System.out.println("------------- FLIGHTS OVER ---------------");
 
-        // Signalling the Porter, stuch at TakeARest to wake up and end his life.
+        // Signalling the Porter, stuck at TakeARest to wake up and end his life.
         arrivalLoungeStub.signalEnd();
 
         // Signal porter, it is over.
@@ -100,6 +100,8 @@ public class ClientAirport {
             e.fillInStackTrace();
         }
 
+        System.out.println("Ending busDriver");
+
         // Join the porter to end his life.
         try
         {
@@ -109,6 +111,9 @@ public class ClientAirport {
         {
             e.fillInStackTrace();
         }
+
+        System.out.println("Ending porter");
+
 
         // Logging the last things
         logger.setnLostBags(reclaimOfficeStub.getnLuggagesLost());

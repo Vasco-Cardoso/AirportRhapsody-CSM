@@ -47,8 +47,6 @@ public class Passenger extends Thread implements Serializable {
         while (!die) {
             switch (this.STATE) {
                 case AT_THE_DISEMBARKING_ZONE:
-                    System.out.println("At the disembarking zone");
-
                     // Logger
 //                    Airport.logger.setPassState(this.id,"ATDZ");
 //                    Airport.logger.write(false);
@@ -74,8 +72,6 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case AT_THE_LUGGAGE_COLLECTION_POINT:
-                    System.out.println("At the colpoint zone");
-
                     // Logger
 //                    Airport.logger.setPassState(this.id,"ATCP");
 //                    Airport.logger.write(false);
@@ -97,8 +93,6 @@ public class Passenger extends Thread implements Serializable {
                     }
                     break;
                 case AT_THE_BAGGAGE_RECLAIM_OFFICE:
-                    System.out.println("At the reclaim zone");
-
                     // Logger
 //                    Airport.logger.setPassState(this.id,"ATRO");
 //                    Airport.logger.write(false);
@@ -111,8 +105,6 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case EXITING_THE_ARRIVAL_TERMINAL:
-                    System.out.println("At EXITING_THE_ARRIVAL_TERMINAL");
-
                     // Logger
 //                    Airport.logger.setPassState(this.id, "EAT");
 //                    Airport.logger.write(false);
@@ -131,8 +123,6 @@ public class Passenger extends Thread implements Serializable {
                     this.die = true;
                     break;
                 case AT_THE_ARRIVAL_TRANSFER_TERMINAL:
-                    System.out.println("At AT_THE_ARRIVAL_TRANSFER_TERMINAL");
-
                     // Logger
 //                    Airport.logger.setPassState(this.getPId(),"AATT");
 //                    Airport.logger.write(false);
@@ -142,8 +132,6 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case TERMINAL_TRANSFER:
-                    System.out.println("At TERMINAL_TRANSFER");
-
                     // Logger
 //                    Airport.logger.setPassState(this.id,"TT");
 //                    Airport.logger.write(false);
@@ -154,8 +142,6 @@ public class Passenger extends Thread implements Serializable {
 
                     break;
                 case AT_THE_DEPARTURE_TRANSFER_TERMINAL:
-                    System.out.println("At AT_THE_DEPARTURE_TRANSFER_TERMINAL");
-
                     // Logger
 //                    Airport.logger.setPassState(this.id,"ADTT");
 //                    Airport.logger.write(false);
@@ -164,8 +150,6 @@ public class Passenger extends Thread implements Serializable {
                     prepareNextLeg();
                     break;
                 case ENTERING_THE_DEPARTURE_TERMINAL:
-                    System.out.println("At ENTERING_THE_DEPARTURE_TERMINAL");
-
                     // Logger
 //                    Airport.logger.setPassState(this.getPId(),"EDT");
 //                    Airport.logger.write(false);
@@ -188,8 +172,6 @@ public class Passenger extends Thread implements Serializable {
     // Funções de estado
     private void goHome()
     {
-        System.out.println("--> PASSENGER GO HOME");
-
         this.arrivalTerminalExit.arrivedTerminal();
         setSTATE(State.EXITING_THE_ARRIVAL_TERMINAL);
     }
@@ -202,7 +184,6 @@ public class Passenger extends Thread implements Serializable {
 
     private void takeABus()
     {
-        System.out.println("PASSENGER: TAKE A BUS. THIS IS: " + this.toString());
         this.arrivalTransferTerminal.arrivedTerminal(this);
         setSTATE(State.AT_THE_ARRIVAL_TRANSFER_TERMINAL);
     }
@@ -242,8 +223,6 @@ public class Passenger extends Thread implements Serializable {
      */
     private void setupPassanger()
     {
-        System.out.println("Setting up passenger");
-
         Random rd = new Random();
         Random r2 = new Random();
         this.transit = rd.nextBoolean();

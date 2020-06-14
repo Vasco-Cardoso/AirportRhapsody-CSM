@@ -31,8 +31,6 @@ public class ArrivalTerminalExit implements Serializable {
         lock.lock();
         try
         {
-            System.out.println("--> ARRIVED TERMINAL INCREASING NUM");
-
             this.numPassengers++;
         }
         catch (Exception e)
