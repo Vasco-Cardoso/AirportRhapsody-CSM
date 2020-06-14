@@ -8,7 +8,7 @@ import clientSide.stubs.*;
 public class ClientAirport {
 
     public static int nPassengers = 6 ;                               // number of passengers
-    public static int nPlaneLandings = 5;                             // number of plane landings
+    public static int nPlaneLandings = 1;                             // number of plane landings
     public static int nSeatingPlaces = 3;                             // bus capacity
     public static int maxBags = 3;                                    // maximum luggage
     public static boolean airplanesDone = false;
@@ -31,7 +31,7 @@ public class ClientAirport {
 
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging
-        String serverHostName = "DESKTOP-BP4CE9V";             // nome do sistema computacional onde está o servidor
+        String serverHostName = "afonso-N550RN";             // nome do sistema computacional onde está o servidor
         int serverPortNumb = 22000;                          // número do port de escuta do servidor
 
         arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);
@@ -52,7 +52,7 @@ public class ClientAirport {
         busDriver.start();
 
         for (int i = 0; i < nPlaneLandings; i++) {
-            System.out.println("------------- VOO NUMERO" + (i + 1) + " ---------------------\n");
+            System.out.println("------------- VOO NUMERO " + (i + 1) + " ---------------------");
 
             logger.setnFlight(i + 1);
             int b = 0;
@@ -102,6 +102,10 @@ public class ClientAirport {
 
         System.out.println("Ending busDriver");
 
+        // Logging the last things
+        logger.setnLostBags(reclaimOfficeStub.getnLuggagesLost());
+        logger.write(true);
+
         // Join the porter to end his life.
         try
         {
@@ -115,8 +119,5 @@ public class ClientAirport {
         System.out.println("Ending porter");
 
 
-        // Logging the last things
-        logger.setnLostBags(reclaimOfficeStub.getnLuggagesLost());
-        logger.write(true);
     }
 }

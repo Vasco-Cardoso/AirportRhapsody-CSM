@@ -134,7 +134,7 @@ public class Message implements Serializable
 
    private Queue<Passenger> seats = null;
 
-   private String lugg = null;
+   private String occ = null;
 
    private int idx = -1;
 
@@ -166,10 +166,10 @@ public class Message implements Serializable
       this.passId = passId;
    }
 
-   public Message (int type, String lug)
+   public Message (int type, String occ)
    {
       msgType = type;
-      this.lugg = lug;
+      this.occ = occ;
    }
 
     public Message (int type, Luggages lug)
@@ -213,10 +213,11 @@ public class Message implements Serializable
 
    public Message(int type, String state, int pord){
 
-      if(pord == 1){
+      msgType = type;
 
+      if(pord == 1) {
          this.porterState = state;
-      }else
+      } else
          this.driverState = state;
    }
 
@@ -250,6 +251,10 @@ public class Message implements Serializable
               ", nIter=" + nIter +
               ", lug=" + lug +
               '}';
+   }
+
+   public String getOcc() {
+      return occ;
    }
 
    public int getIdx() {

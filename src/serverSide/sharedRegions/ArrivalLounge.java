@@ -73,6 +73,8 @@ public class ArrivalLounge{
             lock.unlock();
         }
 
+        System.out.println("LUGGAGE É: " + l);
+
         return l;
     }
 

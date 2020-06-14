@@ -73,7 +73,6 @@ public class GeneralRepository {
 
         lock.lock();
         try{
-
             this.nBags = nBags;
         }catch (Exception e){}
         finally {
@@ -381,17 +380,22 @@ public class GeneralRepository {
                 outMessage = new Message (Message.ACK);
                 break;
 
+            case Message.SNLB:
+                setnLostBags(inMessage.getN());
+                outMessage = new Message (Message.ACK);
+                break;
+
             case Message.SNBS:
                 setnBagsStoreroom(inMessage.getN());
                 outMessage = new Message (Message.ACK);
                 break;
 
             case Message.SWQ:
-                setWaitingQueue(inMessage.getState());
+                setWaitingQueue(inMessage.getOcc());
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SBO:
-                setBusOcupation(inMessage.getState());
+                setBusOcupation(inMessage.getOcc());
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SPSI:
@@ -411,11 +415,11 @@ public class GeneralRepository {
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SNBCL:
-                setnBagsCollected(inMessage.getIdx(), inMessage.getN());
+                setnBagsCollected(inMessage.getIdx(), inMessage.getNcollected());
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.SNBST:
-                setnBagsStart(inMessage.getIdx(), inMessage.getN());
+                setnBagsStart(inMessage.getIdx(), inMessage.getNcollected());
                 outMessage = new Message (Message.ACK);
                 break;
             case Message.CLR:

@@ -32,6 +32,7 @@ public class Porter extends Thread {
     {
         while(!ClientAirport.airplanesDone)
         {
+            System.out.println("airplanes done: "+ClientAirport.airplanesDone);
             switch(this.STATE)
             {
                 case WAITING_FOR_A_PLANE_TO_LAND:

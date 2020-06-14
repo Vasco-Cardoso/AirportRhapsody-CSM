@@ -109,7 +109,7 @@ public class Passenger extends Thread implements Serializable {
                     ClientAirport.logger.write(false);
 
                     // Checks if this passenger is the last one to arrive the terminal, else waits for the last one to signal
-                    if(clientSide.ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
+                    if(ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
                     {
                         this.arrivalTerminalExit.lastPassenger();
                         this.departureTerminalEntry.lastPassenger();
@@ -120,16 +120,18 @@ public class Passenger extends Thread implements Serializable {
                     }
 
                     this.die = true;
-                    break;
+                    return;
                 case AT_THE_ARRIVAL_TRANSFER_TERMINAL:
                     // Logger
                     ClientAirport.logger.setPassState(this.getPId(),"AATT");
                     ClientAirport.logger.write(false);
 
                     this.arrivalTransferTerminal.enterTheBus();
+
                     ClientAirport.logger.setBusOcupation(String.valueOf(this.getPId()));
                     ClientAirport.logger.setWaitingQueue("-");
                     ClientAirport.logger.write(false);
+
                     setSTATE(State.TERMINAL_TRANSFER);
 
                     break;
@@ -159,7 +161,7 @@ public class Passenger extends Thread implements Serializable {
                     ClientAirport.logger.write(false);
 
                     // Checks if this passenger is the last one to arrive the terminal, else waits for the last one to signal
-                    if(clientSide.ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
+                    if(ClientAirport.nPassengers == this.arrivalTerminalExit.getNumPassengers() + this.departureTerminalEntry.getNumPassengers())
                     {
                         this.arrivalTerminalExit.lastPassenger();
                         this.departureTerminalEntry.lastPassenger();
@@ -168,7 +170,8 @@ public class Passenger extends Thread implements Serializable {
                     }
 
                     this.die = true;
-                    break;
+                    return;
+
             }
         }
     }
@@ -232,7 +235,7 @@ public class Passenger extends Thread implements Serializable {
         Random rd = new Random();
         Random r2 = new Random();
         this.transit = rd.nextBoolean();
-        this.num_bags = r2.nextInt(clientSide.ClientAirport.maxBags);
+        this.num_bags = r2.nextInt(ClientAirport.maxBags);
         Random r = new Random();
 
         for(int i=0; i<this.num_bags ; i++)
