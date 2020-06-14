@@ -41,6 +41,12 @@ public class ReclaimOffice {
 
     }
 
+    public void terminate(){
+
+        System.exit(1);
+    }
+
+
     public Message processAndReply(Message inMessage) {
 
         Message outMessage = null;
@@ -54,6 +60,11 @@ public class ReclaimOffice {
 
             case Message.GNLL:
                 outMessage = new Message(Message.ACK, getnLuggagesLost());
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

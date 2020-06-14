@@ -151,6 +151,11 @@ public class ArrivalTransferTerminal {
         return this.numPassengers;
     }
 
+    public void terminate(){
+
+        System.exit(1);
+    }
+
     public Message processAndReply(Message inMessage) {
 
         Message outMessage = null;                           // mensagem de resposta
@@ -180,6 +185,11 @@ public class ArrivalTransferTerminal {
             case Message.CS:
                 clearSpots();
                 outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

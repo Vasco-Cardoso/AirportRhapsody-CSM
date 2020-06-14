@@ -155,6 +155,11 @@ public class ArrivalLounge{
         }
     }
 
+    public void terminate(){
+
+       System.exit(1);
+    }
+
     public Message processAndReply(Message inMessage) throws MessageException {
 
         Message outMessage = null;                           // mensagem de resposta
@@ -186,6 +191,11 @@ public class ArrivalLounge{
             case Message.SE:
                 signalEnd();
                 outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

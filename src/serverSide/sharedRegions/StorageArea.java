@@ -27,6 +27,10 @@ public class StorageArea {
         return this.luggagesQueue.size();
     }
 
+    public void terminate(){
+
+        System.exit(1);
+    }
 
     public Message processAndReply(Message inMessage) {
 
@@ -41,6 +45,11 @@ public class StorageArea {
 
             case Message.GS:
                 outMessage = new Message(Message.ACK, getSize());
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

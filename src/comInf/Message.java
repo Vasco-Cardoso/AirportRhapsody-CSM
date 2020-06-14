@@ -118,6 +118,9 @@ public class Message implements Serializable
    public static final int SNBST = 47;
 
 
+   public static final int TERM = 48;
+
+
   /* Campos das mensagens */
 
    private int msgType = -1;

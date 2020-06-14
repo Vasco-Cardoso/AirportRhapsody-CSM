@@ -108,6 +108,11 @@ public class ArrivalTerminalExit implements Serializable {
         }
     }
 
+    public void terminate(){
+
+        System.exit(1);
+    }
+
     public Message processAndReply(Message inMessage) {
 
         Message outMessage = null;                           // mensagem de resposta
@@ -137,6 +142,11 @@ public class ArrivalTerminalExit implements Serializable {
             case Message.SE:
                 setEmpty();
                 outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

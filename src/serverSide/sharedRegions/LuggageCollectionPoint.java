@@ -119,6 +119,11 @@ public class LuggageCollectionPoint{
         }
     }
 
+    public void terminate(){
+
+        System.exit(1);
+    }
+
     public int getSize()
     {
         return this.luggagesQueue.size();
@@ -147,6 +152,11 @@ public class LuggageCollectionPoint{
 
             case Message.GS:
                 outMessage = new Message(Message.ACK, getSize());
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

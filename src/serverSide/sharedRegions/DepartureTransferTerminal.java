@@ -123,6 +123,11 @@ public class DepartureTransferTerminal{
         this.canleave = false;
     }
 
+    public void terminate(){
+
+        System.exit(1);
+    }
+
     public Message processAndReply(Message inMessage) {
 
         Message outMessage = null;                           // mensagem de resposta
@@ -152,6 +157,11 @@ public class DepartureTransferTerminal{
             case Message.SCL:
                 setCanleave();
                 outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.TERM:
+                outMessage = new Message(Message.ACK);
+                terminate();
                 break;
         }
 

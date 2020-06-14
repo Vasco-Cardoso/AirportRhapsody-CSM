@@ -112,6 +112,7 @@ public class ArrivalLoungeStub implements Serializable {
 
         ClientCom con = new ClientCom (serverHostName, serverPortNumb);
         Message inMessage, outMessage;
+
         System.out.println("Signal Porter to end his life");
         while (!con.open ())                                  // aguarda ligação
         {
@@ -132,5 +133,26 @@ public class ArrivalLoungeStub implements Serializable {
         con.close ();
     }
 
+    public void terminate(){
+
+        ClientCom con = new ClientCom (serverHostName, serverPortNumb);
+        Message inMessage, outMessage;
+        while (!con.open ())                                  // aguarda ligação
+        {
+            try {
+                Thread.currentThread ().sleep ((long) (10));
+            }
+            catch (InterruptedException e) {}
+        }
+        outMessage = new Message (Message.TERM);
+        con.writeObject (outMessage);
+        inMessage = (Message) con.readObject ();
+
+        if (inMessage.getType () != Message.ACK)
+        {
+            System.exit (1);
+        }
+        con.close ();
+    }
 
 }
