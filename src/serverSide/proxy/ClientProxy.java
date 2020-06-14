@@ -2,6 +2,7 @@ package serverSide.proxy;
 
 import comInf.Message;
 import serverSide.communications.ServerCom;
+import serverSide.repository.GeneralRepository;
 import serverSide.sharedRegions.*;
 
 /**
@@ -46,6 +47,8 @@ public class ClientProxy extends Thread
    private ArrivalTerminalExit arrTermExit;
    private DepartureTerminalEntry depTermEntrance;
    private StorageArea tempStorageArea;
+
+   private GeneralRepository genRepo;
 
   /**
    *  Instanciação do interface.
@@ -124,6 +127,15 @@ public class ClientProxy extends Thread
         this.type = 8;
     }
 
+    public ClientProxy (ServerCom sconi, GeneralRepository genrepo)
+    {
+        super ("Proxy_" + ClientProxy.getProxyId ());
+
+        this.sconi = sconi;
+        this.genRepo = genrepo;
+        this.type = 9;
+    }
+
 
   /**
    *  Ciclo de vida do thread agente prestador de serviço.
@@ -164,6 +176,8 @@ public class ClientProxy extends Thread
               case 8:
                   outMessage = tempStorageArea.processAndReply (inMessage);
                   break;
+              case 9:
+                  outMessage = genRepo.processAndReply(inMessage);
               default:
                   System.out.println("ERROR");
                   break;

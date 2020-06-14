@@ -8,6 +8,7 @@ import java.util.Queue;
 public class Message implements Serializable
 {
 
+
    private static final long serialVersionUID = 1001L;
 
   /* Tipos das mensagens */
@@ -84,6 +85,37 @@ public class Message implements Serializable
 
    public static final int GNLL = 32;
 
+   // General Repository
+
+   public static final int SFN = 33;
+
+   public static final int SNB = 34;
+
+   public static final int SNBC = 35;
+
+   public static final int SNBS = 36;
+
+   public static final int SWQ = 37;
+
+   public static final int SBO = 38;
+
+   public static final int SPST = 39;
+
+   public static final int SPSI = 40;
+
+   public static final int SDS = 41;
+
+   public static final int SNLB = 42;
+
+   public static final int CLR = 43;
+
+   public static final int WRT = 44;
+
+   public static final int SPOS = 45;
+
+   public static final int SNBCL = 46;
+
+   public static final int SNBST = 47;
 
 
   /* Campos das mensagens */
@@ -103,6 +135,14 @@ public class Message implements Serializable
    private Queue<Passenger> seats = null;
 
    private String lugg = null;
+
+   private int idx = -1;
+
+   private boolean situation = false;
+
+   private String state = null;
+
+   private int ncollected = -1;
 
 
    public Message (int type)
@@ -148,6 +188,33 @@ public class Message implements Serializable
       this.seats= seats;
    }
 
+   public Message(int type, int idx, boolean passSituation) {
+
+      msgType = type;
+      this.idx = idx;
+      this.situation = passSituation;
+   }
+
+   public Message(int type, boolean passSituation) {
+
+      msgType = type;
+      this.situation = passSituation;
+   }
+
+   public Message(int type, int idx, String passState) {
+
+      msgType = type;
+      this.idx = idx;
+      this.state = passState;
+   }
+
+   public Message(int type, int idx, int nBagsCollected) {
+
+      msgType = type;
+      this.idx = idx;
+      this.ncollected = nBagsCollected;
+   }
+
    public int getType() {
       return msgType;
    }
@@ -178,5 +245,21 @@ public class Message implements Serializable
               ", nIter=" + nIter +
               ", lug=" + lug +
               '}';
+   }
+
+   public int getIdx() {
+      return idx;
+   }
+
+   public boolean getSituation() {
+      return situation;
+   }
+
+   public String getState() {
+      return state;
+   }
+
+   public int getNcollected() {
+      return ncollected;
    }
 }

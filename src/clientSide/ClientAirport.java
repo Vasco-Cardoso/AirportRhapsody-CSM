@@ -4,7 +4,6 @@ import clientSide.entities.Driver;
 import clientSide.entities.Passenger;
 import clientSide.entities.Porter;
 import clientSide.stubs.*;
-import serverSide.repository.GeneralRepository;
 
 public class ClientAirport {
 
@@ -12,7 +11,6 @@ public class ClientAirport {
     public static int nPlaneLandings = 5;                             // number of plane landings
     public static int nSeatingPlaces = 3;                             // bus capacity
     public static int maxBags = 3;                                    // maximum luggage
-    public static GeneralRepository logger = new GeneralRepository(nSeatingPlaces, nPassengers, 6,"Report2.txt");
     public static boolean airplanesDone = false;
 
     public static void main (String [] args) {
@@ -28,11 +26,11 @@ public class ClientAirport {
         LuggageCollectionPointStub luggageCollectionPointStub;
         ReclaimOfficeStub reclaimOfficeStub;
         StorageAreaStub storageAreaStub;
-
+        GeneralRepositoryStub logger;
 
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging
-        String serverHostName = "afonso-N550RN";             // nome do sistema computacional onde está o servidor
+        String serverHostName = "DESKTOP-BP4CE9V";             // nome do sistema computacional onde está o servidor
         int serverPortNumb = 22000;                          // número do port de escuta do servidor
 
         arrivalLoungeStub = new ArrivalLoungeStub(serverHostName, serverPortNumb + 1);
@@ -43,6 +41,7 @@ public class ClientAirport {
         arrivalTerminalExitStub = new ArrivalTerminalExitStub(serverHostName, serverPortNumb + 6);
         departureTerminalEntryStub = new DepartureTerminalEntryStub(serverHostName, serverPortNumb + 7);
         storageAreaStub = new StorageAreaStub(serverHostName, serverPortNumb + 8);
+        logger = new GeneralRepositoryStub(serverHostName, serverPortNumb + 9);
 
         porter = new Porter(arrivalLoungeStub, luggageCollectionPointStub, storageAreaStub);
         busDriver = new Driver(nSeatingPlaces, arrivalTransferTerminalStub, departureTransferTerminalStub);

@@ -1,5 +1,8 @@
 package serverSide.repository;
 
+import comInf.Luggages;
+import comInf.Message;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.concurrent.locks.ReentrantLock;
@@ -354,5 +357,77 @@ public class GeneralRepository {
 
             lock.unlock();
         }
+    }
+
+    public Message processAndReply(Message inMessage) {
+
+        Message outMessage = null;                           // mensagem de resposta
+        Luggages l = null;
+
+        switch (inMessage.getType ()){
+
+            case Message.SFN:
+                setnFlight(inMessage.getN());
+                outMessage = new Message (Message.ACK);       // gerar resposta
+                break;
+
+            case Message.SNB:
+                setnBags(inMessage.getN());
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.SNBC:
+                setnBagsConveyor(inMessage.getN());
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.SNBS:
+                setnBagsStoreroom(inMessage.getN());
+                outMessage = new Message (Message.ACK);
+                break;
+
+            case Message.SWQ:
+                setWaitingQueue(inMessage.getState());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SBO:
+                setBusOcupation(inMessage.getState());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SPSI:
+                setPassSituation(inMessage.getIdx(), inMessage.getSituation());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SPST:
+                setPassState(inMessage.getIdx(), inMessage.getState());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SDS:
+                setDriverState(inMessage.getState());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SPOS:
+                setPorterState(inMessage.getState());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SNBCL:
+                setnBagsCollected(inMessage.getIdx(), inMessage.getN());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.SNBST:
+                setnBagsStart(inMessage.getIdx(), inMessage.getN());
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.CLR:
+                clear();
+                outMessage = new Message (Message.ACK);
+                break;
+            case Message.WRT:
+                write(inMessage.getSituation());
+                outMessage = new Message (Message.ACK);
+                break;
+        }
+
+        return outMessage;
     }
 }
