@@ -12,6 +12,7 @@ public class ClientAirport {
     public static int nSeatingPlaces = 3;                             // bus capacity
     public static int maxBags = 3;                                    // maximum luggage
     public static boolean airplanesDone = false;
+    public static GeneralRepositoryStub logger;
 
     public static void main (String [] args) {
         Passenger[] passenger = new Passenger[nPassengers]; // Passenger threads array
@@ -26,7 +27,7 @@ public class ClientAirport {
         LuggageCollectionPointStub luggageCollectionPointStub;
         ReclaimOfficeStub reclaimOfficeStub;
         StorageAreaStub storageAreaStub;
-        GeneralRepositoryStub logger;
+
 
         int nIter;                                           // número de iterações do ciclo de vida dos clientes
         String fName;                                        // nome do ficheiro de logging

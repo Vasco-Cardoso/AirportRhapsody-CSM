@@ -1,5 +1,6 @@
 package clientSide.entities;
 
+import clientSide.ClientAirport;
 import clientSide.stubs.ArrivalTransferTerminalStub;
 import clientSide.stubs.DepartureTransferTerminalStub;
 import mainProgram.Airport;
@@ -59,8 +60,8 @@ public class Driver extends Thread{
 
                     break;
                 case DRIVING_FORWARD:
-//                    Airport.logger.setDriverState("DF");
-//                    Airport.logger.write(false);
+                    ClientAirport.logger.setDriverState("DF");
+                    ClientAirport.logger.write(false);
 
                     try
                     {
