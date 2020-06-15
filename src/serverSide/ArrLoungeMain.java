@@ -14,7 +14,7 @@ public class ArrLoungeMain {
 
 
     public static void main(String[] args) {
-
+        System.out.println("Starting ArrLoungeMain");
         ArrivalLounge arrivalLounge;
 
         ServerCom scon_arrivalLounge, sconi_arrivalLounge;

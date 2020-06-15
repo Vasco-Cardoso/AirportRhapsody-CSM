@@ -13,6 +13,7 @@ public class DepTransfTermMain {
 
 
     public static void main(String[] args) {
+        System.out.println("Starting DepTransfTermMain");
 
         DepartureTransferTerminal depTransQuay;
 

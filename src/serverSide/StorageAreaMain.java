@@ -13,6 +13,7 @@ public class StorageAreaMain {
 
 
     public static void main(String[] args) {
+        System.out.println("Starting StorageAreaMain");
 
         StorageArea tempStorageArea;
 

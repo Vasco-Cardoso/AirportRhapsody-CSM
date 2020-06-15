@@ -230,7 +230,6 @@ public class ClientProxy extends Thread
               case 9:
                   outMessage = genRepo.processAndReply(inMessage);
               default:
-                  System.out.println("ERROR");
                   break;
           }
       }

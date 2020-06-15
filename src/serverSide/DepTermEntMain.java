@@ -13,6 +13,7 @@ public class DepTermEntMain {
 
 
     public static void main(String[] args) {
+        System.out.println("Starting DepTermEntMain");
 
         DepartureTerminalEntry depTermEntrance;
 

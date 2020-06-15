@@ -17,6 +17,7 @@ public class ClientAirport {
     public static GeneralRepositoryStub logger;
 
     public static void main (String [] args) {
+        System.out.println("Starting clientAirport main");
         Passenger[] passenger = new Passenger[nPassengers]; // Passenger threads array
         Porter porter;                                     // thread porter
         Driver busDriver;                                // thread bus driver

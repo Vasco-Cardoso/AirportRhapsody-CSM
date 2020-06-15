@@ -2,22 +2,27 @@
 
 # serverSide
 cd bin
+echo "starting"
+java serverSide.GenRepoMain  &
+sleep 1&
+java serverSide.ArrLoungeMain &
+sleep 1&
+java serverSide.ArrTermExitMain &
+sleep 1&
+java serverSide.ArrTransfTermMain &
+sleep 1&
+java serverSide.DepTermEntMain &
+sleep 1&
+java serverSide.DepTransfTermMain &
+sleep 1&
+java serverSide.LugColPointMain  &
+sleep 1&
+java serverSide.ReclaimOfficeMain &
+sleep 1&
+java serverSide.StorageAreaMain  & 
 
-java serverSide.repository.GeneralRepository > GeneralRepository 
-sleep 1
-
-java serverSide.ArrLoungeMain > ArrLoungeMain &
-java serverSide.ArrTermExitMain > ArrTermExitMain &
-java serverSide.ArrTransfTermMain > ArrivalTerminalTransferQuay &
-java serverSide.DepTermEntMain > DepTermEntMain &
-java serverSide.DepTransfTermMain > DepTransfTermMain &
-java serverSide.LugColPointMain > LugColPointMain &
-java serverSide.RecOfMain > RecOfMain &
-java serverSide.StorageAreaMain > StorageAreaMain & 
-
-
-sleep 1
+sleep 1 &
 
 # clientSide
-
-java clientSide.ClientAirport > ClientAirport 
+echo "Insert the host name "
+java clientSide.ClientAirport
